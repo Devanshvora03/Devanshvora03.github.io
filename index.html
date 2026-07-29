@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devansh Vora — AI &amp; ML Researcher</title>
+<meta name="description" content="Portfolio of Devansh Vora — Artificial Intelligence & Machine Learning Researcher. Knowledge graphs, LLMs, RAG, agentic systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e1a;
+    --surface:#0f1524;
+    --surface-2:#121a2c;
+    --text-headline:#f5f7fb;
+    --text-body:#c8d0e0;
+    --text-muted:#4a5a80;
+    --accent:#7dd3c0;
+    --line:#1c2740;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg);
+    color:var(--text-body);
+    font-family:'Inter', sans-serif;
+    font-weight:300;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  ::selection{background:var(--accent);color:var(--bg);}
+
+  a{color:inherit;text-decoration:none;}
+
+  .mono{font-family:'JetBrains Mono', monospace;}
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 48px;
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:0 32px;
+  }
+
+  .rail{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--text-muted);
+    letter-spacing:0.05em;
+    padding-top:6px;
+    position:sticky;
+    top:48px;
+    align-self:start;
+    height:0;
+  }
+
+  .rail span{display:block;}
+
+  /* ---------- HEADER ---------- */
+
+  header{padding:80px 0 60px;}
+
+  .top-meta{
+    grid-column:2;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--text-muted);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    margin-bottom:64px;
+    padding-bottom:20px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .top-meta .status{
+    display:flex;align-items:center;gap:8px;
+  }
+  .dot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 8px var(--accent);
+  }
+
+  .name{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:clamp(48px, 7vw, 96px);
+    line-height:0.98;
+    letter-spacing:-0.02em;
+    color:var(--text-headline);
+    margin-bottom:20px;
+  }
+
+  .name .accent-dot{color:var(--accent);}
+
+  .role-line{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 0;
+    align-items:baseline;
+    margin-bottom:40px;
+  }
+
+  .role-line .role{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:20px;
+    font-weight:500;
+    color:var(--text-body);
+  }
+
+  .role-line .sep{
+    color:var(--text-muted);
+    margin:0 14px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:14px;
+  }
+
+  .tagline{
+    font-size:17px;
+    font-weight:300;
+    color:var(--text-body);
+    max-width:620px;
+    margin-bottom:36px;
+  }
+
+  .tagline strong{
+    color:var(--text-headline);
+    font-weight:500;
+  }
+
+  .links-row{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+  }
+
+  .links-row a{
+    color:var(--text-body);
+    border-bottom:1px solid var(--line);
+    padding-bottom:2px;
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .links-row a:hover{
+    color:var(--accent);
+    border-color:var(--accent);
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+
+  section{
+    padding:64px 0;
+    border-bottom:1px solid var(--line);
+  }
+
+  section:last-of-type{border-bottom:none;}
+
+  .section-head{
+    grid-column:2;
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    margin-bottom:40px;
+  }
+
+  .section-num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--accent);
+    letter-spacing:0.05em;
+  }
+
+  .section-title{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:28px;
+    font-weight:600;
+    color:var(--text-headline);
+    letter-spacing:-0.01em;
+  }
+
+  .section-body{grid-column:2;}
+
+  /* ---------- ABOUT ---------- */
+
+  .about-text{
+    font-size:16px;
+    font-weight:300;
+    color:var(--text-body);
+    max-width:680px;
+    line-height:1.85;
+  }
+
+  .about-text p + p{margin-top:18px;}
+
+  .stack-list{
+    margin-top:36px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  .stack-item{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--text-body);
+    border:1px solid var(--line);
+    padding:6px 12px;
+    border-radius:2px;
+    letter-spacing:0.02em;
+  }
+
+  /* ---------- WORK / PROJECTS ---------- */
+
+  .project{
+    display:grid;
+    grid-template-columns:100px 1fr auto;
+    gap:24px;
+    align-items:start;
+    padding:28px 0;
+    border-top:1px solid var(--line);
+    transition:background .2s ease;
+  }
+  .project:first-child{border-top:none;}
+
+  .project-year{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--text-muted);
+    padding-top:4px;
+  }
+
+  .project-main h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:20px;
+    font-weight:600;
+    color:var(--text-headline);
+    margin-bottom:8px;
+  }
+
+  .project-main p{
+    font-size:14.5px;
+    font-weight:300;
+    color:var(--text-body);
+    max-width:560px;
+    margin-bottom:12px;
+  }
+
+  .project-tags{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+
+  .project-tags span{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    color:var(--accent);
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+  }
+
+  .project-tags span::after{
+    content:"·";
+    color:var(--text-muted);
+    margin-left:8px;
+  }
+  .project-tags span:last-child::after{content:"";}
+
+  .project-link{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--text-muted);
+    padding-top:4px;
+    white-space:nowrap;
+    transition:color .2s ease;
+  }
+  .project:hover .project-link{color:var(--accent);}
+
+  /* ---------- EXPERIENCE ---------- */
+
+  .xp{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:24px;
+    padding:32px 0;
+    border-top:1px solid var(--line);
+  }
+  .xp:first-child{border-top:none;}
+
+  .xp-meta{padding-top:2px;}
+
+  .xp-role{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:15px;
+    font-weight:600;
+    color:var(--text-headline);
+    margin-bottom:4px;
+  }
+
+  .xp-org{
+    font-size:13px;
+    color:var(--text-body);
+    margin-bottom:8px;
+  }
+
+  .xp-dates{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--text-muted);
+    letter-spacing:0.02em;
+  }
+
+  .xp-body h4{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:15px;
+    font-weight:600;
+    color:var(--text-headline);
+    margin-bottom:10px;
+    margin-top:22px;
+  }
+  .xp-body h4:first-child{margin-top:0;}
+
+  .xp-badge{
+    display:inline-block;
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    color:var(--accent);
+    border:1px solid var(--accent);
+    padding:2px 8px;
+    border-radius:2px;
+    letter-spacing:0.04em;
+    margin-left:10px;
+    vertical-align:middle;
+    text-transform:uppercase;
+  }
+
+  .xp-body ul{
+    list-style:none;
+    padding:0;
+  }
+
+  .xp-body li{
+    position:relative;
+    padding-left:20px;
+    font-size:14px;
+    font-weight:300;
+    color:var(--text-body);
+    line-height:1.7;
+    margin-bottom:10px;
+  }
+
+  .xp-body li::before{
+    content:"—";
+    position:absolute;
+    left:0;
+    color:var(--text-muted);
+  }
+
+  .xp-body li .metric{
+    color:var(--accent);
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+  }
+
+  /* ---------- WRITING / PUBLICATIONS ---------- */
+
+  .pub{
+    padding:20px 0;
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:16px;
+    align-items:baseline;
+  }
+  .pub:first-child{border-top:none;}
+
+  .pub-title{
+    font-size:15px;
+    font-weight:400;
+    color:var(--text-headline);
+  }
+
+  .pub-venue{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    color:var(--text-muted);
+    margin-top:4px;
+  }
+
+  .pub-link{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--accent);
+  }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+
+  .contact-title{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(32px, 5vw, 52px);
+    font-weight:600;
+    color:var(--text-headline);
+    max-width:640px;
+    line-height:1.2;
+    margin-bottom:28px;
+  }
+
+  .contact-title .accent-dot{color:var(--accent);}
+
+  .contact-links{
+    display:flex;
+    gap:32px;
+    flex-wrap:wrap;
+    margin-top:8px;
+  }
+
+  .contact-links a{
+    font-family:'JetBrains Mono', monospace;
+    font-size:14px;
+    color:var(--text-body);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:color .2s ease;
+  }
+  .contact-links a:hover{color:var(--accent);}
+
+  .contact-links a::before{
+    content:"→";
+    color:var(--accent);
+  }
+
+  footer{
+    grid-column:2;
+    padding:40px 0 60px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--text-muted);
+    display:flex;
+    justify-content:space-between;
+    letter-spacing:0.04em;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+
+  @media (max-width:780px){
+    .wrap{
+      grid-template-columns:1fr;
+      padding:0 24px;
+    }
+    .rail{display:none;}
+    .top-meta, .section-head, .section-body, footer{grid-column:1;}
+    header{padding:48px 0 40px;}
+    .project{
+      grid-template-columns:1fr;
+      gap:8px;
+    }
+    .project-year{padding-top:0;}
+    .xp{
+      grid-template-columns:1fr;
+      gap:10px;
+    }
+    .pub{grid-template-columns:1fr;gap:6px;}
+    .contact-links{flex-direction:column;gap:14px;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+
+  :focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top-meta">
+    <span class="status"><span class="dot"></span>Jr. AI Research Fellow, Dhirubhai Ambani University</span>
+    <span>Ahmedabad, IN · UTC+5:30</span>
+  </div>
+</div>
+
+<header>
+  <div class="wrap">
+    <div class="rail">
+      <span>§ 00</span>
+    </div>
+    <div>
+      <h1 class="name">Devansh<br>Vora<span class="accent-dot">.</span></h1>
+      <div class="role-line">
+        <span class="role">AI Researcher</span>
+        <span class="sep">/</span>
+        <span class="role">ML Engineer</span>
+      </div>
+      <p class="tagline">
+        I research <strong>knowledge graph construction</strong> and <strong>retrieval-augmented
+        reasoning</strong> for LLMs — currently building agentic pipelines that get small
+        open-source models to outperform GPT-4o on structured extraction, under review at
+        <strong>EMNLP'26</strong>.
+      </p>
+      <div class="links-row">
+        <a href="mailto:devanshvora03@gmail.com">devanshvora03@gmail.com</a>
+        <a href="https://github.com/Devanshvora03" target="_blank" rel="noopener">github.com/Devanshvora03</a>
+        <a href="https://linkedin.com/in/devanshvora03" target="_blank" rel="noopener">linkedin.com/in/devanshvora03</a>
+        <a href="tel:+919429734857">+91 94297 34857</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="rail"><span>§ 01</span></div>
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">About</h2>
+    </div>
+    <div class="section-body">
+      <div class="about-text">
+        <p>
+          I'm a Computer Engineering graduate (Government Engineering College, Gandhinagar,
+          CGPA 8.30) working as a <span style="color:var(--text-headline)">Jr. AI Research
+          Fellow</span> at the Smart Energy Learning Center, Dhirubhai Ambani University.
+          My research centers on <span style="color:var(--text-headline)">knowledge graph
+          construction</span> and <span style="color:var(--text-headline)">multi-hop
+          retrieval</span> — building agentic pipelines that make small, quantized
+          open-source LLMs competitive with much larger closed models.
+        </p>
+        <p>
+          Before this, I worked across three industry internships spanning
+          <span style="color:var(--text-headline)">computer vision</span> (brand infringement
+          detection with fine-tuned Vision Transformers), <span style="color:var(--text-headline)">generative
+          AI applications</span> (RAG systems, transcript analysis with LLMs), and
+          <span style="color:var(--text-headline)">backend engineering</span> (Django,
+          geospatial systems). I care about rigorous evaluation, reproducible results, and
+          systems that work under real resource constraints — not just on paper.
+        </p>
+      </div>
+      <div class="stack-list">
+        <span class="stack-item">PyTorch</span>
+        <span class="stack-item">Python / Java</span>
+        <span class="stack-item">LangChain</span>
+        <span class="stack-item">LlamaIndex</span>
+        <span class="stack-item">CrewAI</span>
+        <span class="stack-item">Hugging Face</span>
+        <span class="stack-item">Neo4j</span>
+        <span class="stack-item">DSPy</span>
+        <span class="stack-item">AWS (SageMaker, Bedrock, S3)</span>
+        <span class="stack-item">Docker / Runpod</span>
+        <span class="stack-item">FastAPI / Django REST</span>
+        <span class="stack-item">Streamlit</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="rail"><span>§ 02</span></div>
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Experience</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="xp">
+        <div class="xp-meta">
+          <div class="xp-role">Jr. AI Research Fellow</div>
+          <div class="xp-org">Smart Energy Learning Center — Dhirubhai Ambani University</div>
+          <div class="xp-dates">May 2025 — Present · Ahmedabad</div>
+        </div>
+        <div class="xp-body">
+          <h4>Sequential Uncertainty Resolution for Knowledge Graph Construction <span class="xp-badge">Under review · EMNLP'26</span></h4>
+          <ul>
+            <li>Architected <strong style="color:var(--text-headline)">SUR</strong>, a novel knowledge graph construction formulation separating fact grounding, relational organization, and graph representation into dependency-aware stages — implemented via SAGE-KG for robust schema-free KG construction with small open-source LLMs.</li>
+            <li>Designed a sequential agentic orchestration pipeline achieving <span class="metric">92.95%</span> factual capture on MINE and <span class="metric">95%</span> entity recovery on SemEval-2010 — outperforming GPT-4o-based baselines (KGGen: <span class="metric">66.07%</span>) while running on Qwen2.5-14B at 4-bit quantization.</li>
+            <li>Evaluated across HotpotQA, MuSiQue, and 2WikiMultiHopQA; integrating SAGE-KG with HippoRAG2 achieved <span class="metric">64.4%</span> Exact Match on 2WikiMultiHopQA and cut LLM call overhead by <span class="metric">73%</span> over KGGen.</li>
+          </ul>
+          <h4>Adaptive Cross-Encoder Graph-Vector Retrieval for Multi-Hop Reasoning</h4>
+          <ul>
+            <li>Developed a cluster-aware graph retrieval framework using agglomerative clustering over entity embeddings, enabling dynamic seed expansion via centroid similarity and TF-IDF hybrid scoring for sparse multi-hop queries.</li>
+            <li>Engineered a directional graph retriever using seed-based PathTrie generation via BFS, paired with a reverse lookup index and a cross-encoder for high-precision multi-hop reasoning.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="xp">
+        <div class="xp-meta">
+          <div class="xp-role">AI Research Intern</div>
+          <div class="xp-org">Communication Crafts Pvt. Ltd.</div>
+          <div class="xp-dates">Dec 2024 — May 2025 · Ahmedabad</div>
+        </div>
+        <div class="xp-body">
+          <h4>Brand Infringement Detection System</h4>
+          <ul>
+            <li>Fine-tuned Vision Transformers and Swin Transformers with FP16 mixed precision to detect logo infringement, reframing continuous similarity as discrete classification.</li>
+            <li>Developed a custom Local Interval Loss function, improving accuracy <span class="metric">3×</span> over traditional contrastive loss.</li>
+            <li>Implemented Flash Window Attention while preserving pretrained Swin Transformer weights; deployed as a serverless endpoint on RunPod with Docker and batch processing.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="xp">
+        <div class="xp-meta">
+          <div class="xp-role">AI Engineer Intern</div>
+          <div class="xp-org">Cilans Systems Pvt. Ltd.</div>
+          <div class="xp-dates">Jun 2024 — Jul 2024 · Ahmedabad</div>
+        </div>
+        <div class="xp-body">
+          <h4>Customer Agent Transcript Audit Report Generator</h4>
+          <ul>
+            <li>Built a GenAI application using Mistral-Large and GPT-4 to analyze agent-customer transcripts, automating reports on response quality, empathy, and problem-solving.</li>
+            <li>Used AWS Bedrock as the inference engine for Mistral-Large.</li>
+          </ul>
+          <h4>Legal-GPT</h4>
+          <ul>
+            <li>Built a RAG application over Indian Penal Code sections using GPT-4, Mistral, Gemini, and LLaMA3 via Hugging Face, Ollama, and LangChain.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="xp">
+        <div class="xp-meta">
+          <div class="xp-role">Django Backend Intern</div>
+          <div class="xp-org">DevNullX Technology Pvt. Ltd.</div>
+          <div class="xp-dates">Dec 2023 — Feb 2024 · Remote</div>
+        </div>
+        <div class="xp-body">
+          <h4>Salesman Expense &amp; Data Tracking System</h4>
+          <ul>
+            <li>Built a Django system tracking expenses via the MapMyIndia axial distance formula based on salesman-entered coordinates.</li>
+            <li>Visualized sales routes and locations on an interactive Folium map for route and expense optimization.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="rail"><span>§ 03</span></div>
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Projects</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="project">
+        <div class="project-year mono">Independent</div>
+        <div class="project-main">
+          <h3>Physics-Guided Latent Inference of PV System Losses</h3>
+          <p>Engineered a loss estimation pipeline for a 40.29 kWp rooftop installation (HKUST, Hong Kong), fusing SAPM, CEC single-diode, SAM, and PVWatts physics models with irradiance decomposition via pvlib. Trained two encoder-decoder autoencoders to infer a unified latent loss signal, validated against real plant generation data.</p>
+          <div class="project-tags">
+            <span>Physics-ML</span>
+            <span>Autoencoders</span>
+            <span>pvlib</span>
+          </div>
+        </div>
+        <div class="project-link">—</div>
+      </div>
+
+      <div class="project">
+        <div class="project-year mono">Independent</div>
+        <div class="project-main">
+          <h3>Isolated Subgraph Merger with Hybrid Translation &amp; Semantic Hyperplanes</h3>
+          <p>Built a topology-aware subgraph merging algorithm detecting isolated subgraphs via structural signals, combining TransH hyperplane translation with semantic similarity for geometry-aware entity alignment. Used t-SNE projections (384/768 → 2D/3D) to validate cluster coherence.</p>
+          <div class="project-tags">
+            <span>Knowledge Graphs</span>
+            <span>TransH</span>
+            <span>Embeddings</span>
+          </div>
+        </div>
+        <div class="project-link">—</div>
+      </div>
+
+      <div class="project">
+        <div class="project-year mono">2024</div>
+        <div class="project-main">
+          <h3>UpdateBuddy AI</h3>
+          <p>Multi-level AI agent that decides, generates, and formats daily work updates for 50+ daily users. Implements chain-of-thought reasoning via Groq's DeepSeek-R1-Distill-Qwen-32B, selecting Jira/Teams templates by tense and language.</p>
+          <div class="project-tags">
+            <span>Agents</span>
+            <span>Groq</span>
+            <span>Streamlit</span>
+          </div>
+        </div>
+        <a href="https://updatebuddy.streamlit.app" target="_blank" rel="noopener" class="project-link">live app →</a>
+      </div>
+
+      <div class="project">
+        <div class="project-year mono">2023</div>
+        <div class="project-main">
+          <h3>Movie Recommendation System</h3>
+          <p>Content-based recommendation engine using NLP feature extraction (genres, cast) with text vectorization and cosine similarity.</p>
+          <div class="project-tags">
+            <span>NLP</span>
+            <span>Vector Search</span>
+          </div>
+        </div>
+        <div class="project-link">view repo →</div>
+      </div>
+
+      <div class="project">
+        <div class="project-year mono">2023</div>
+        <div class="project-main">
+          <h3>Rainfall Prediction System</h3>
+          <p>Random Forest classifier with feature encoding, multicollinearity removal, and GridSearchCV hyperparameter optimization, evaluated via accuracy and confusion matrix.</p>
+          <div class="project-tags">
+            <span>Classical ML</span>
+            <span>scikit-learn</span>
+          </div>
+        </div>
+        <div class="project-link">view repo →</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="writing">
+  <div class="wrap">
+    <div class="rail"><span>§ 04</span></div>
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Publications &amp; certifications</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="pub">
+        <div>
+          <div class="pub-title">Sequential Uncertainty Resolution for Knowledge Graph Construction</div>
+          <div class="pub-venue mono">under review · EMNLP 2026</div>
+        </div>
+        <span class="pub-link">in review</span>
+      </div>
+
+      <div class="pub">
+        <div>
+          <div class="pub-title">Oracle Cloud Infrastructure 2024 Generative AI Certified Professional</div>
+          <div class="pub-venue mono">certification · Oracle · 2024</div>
+        </div>
+        <a href="#" class="pub-link">view →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="rail"><span>§ 05</span></div>
+    <div class="section-body" style="grid-column:1 / -1;">
+      <h2 class="contact-title">Building something interesting? Let's talk<span class="accent-dot">.</span></h2>
+      <p style="font-family:'JetBrains Mono', monospace; font-size:12.5px; color:var(--text-muted); margin-bottom:24px;">
+        B.E. Computer Engineering, Government Engineering College, Gandhinagar — CGPA 8.30 · 2021–2025
+      </p>
+      <div class="contact-links">
+        <a href="mailto:devanshvora03@gmail.com">Email</a>
+        <a href="https://github.com/Devanshvora03" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/devanshvora03" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="tel:+919429734857">Phone</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>© 2026 Devansh Vora</span>
+    <span>Built with care, no framework</span>
+  </footer>
+</div>
+
+</body>
+</html>

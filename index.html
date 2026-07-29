@@ -16,8 +16,19 @@
     --text-headline:#f5f7fb;
     --text-body:#c8d0e0;
     --text-muted:#4a5a80;
-    --accent:#7dd3c0;
+    --accent:#3d8f7a;
     --line:#1c2740;
+  }
+
+  [data-theme="light"]{
+    --bg:#fafaf9;
+    --surface:#ffffff;
+    --surface-2:#f3f3f1;
+    --text-headline:#14161c;
+    --text-body:#40434d;
+    --text-muted:#9a9a94;
+    --accent:#2f7a68;
+    --line:#e5e4e0;
   }
 
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -32,6 +43,7 @@
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
+    transition:background .3s ease, color .3s ease;
   }
 
   ::selection{background:var(--accent);color:var(--bg);}
@@ -221,6 +233,83 @@
   }
 
   /* ---------- WORK / PROJECTS ---------- */
+
+  .project-combined{
+    padding:28px 0;
+    border-top:1px solid var(--line);
+  }
+  .project-combined:first-child{border-top:none;}
+
+  .combined-header{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:20px;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+
+  .combined-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--text-muted);
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+
+  .combined-parts{
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+  }
+
+  .part{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:20px;
+  }
+
+  .part-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--accent);
+    padding-top:2px;
+    letter-spacing:0.03em;
+  }
+
+  .part-main h4{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:18px;
+    font-weight:600;
+    color:var(--text-headline);
+    margin-bottom:8px;
+  }
+
+  .part-main p{
+    font-size:14px;
+    font-weight:300;
+    color:var(--text-body);
+    max-width:600px;
+    margin-bottom:10px;
+    line-height:1.75;
+  }
+
+  .part-tags{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+
+  .part-tags span{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    color:var(--text-muted);
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    border:1px solid var(--line);
+    padding:3px 8px;
+    border-radius:2px;
+  }
 
   .project{
     display:grid;
@@ -461,12 +550,22 @@
     }
     .rail{display:none;}
     .top-meta, .section-head, .section-body, footer{grid-column:1;}
+    .top-meta{flex-wrap:wrap;gap:12px;}
     header{padding:48px 0 40px;}
     .project{
       grid-template-columns:1fr;
       gap:8px;
     }
     .project-year{padding-top:0;}
+    .part{
+      grid-template-columns:1fr;
+      gap:6px;
+    }
+    .combined-header{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:8px;
+    }
     .xp{
       grid-template-columns:1fr;
       gap:10px;
@@ -484,14 +583,61 @@
     outline:2px solid var(--accent);
     outline-offset:3px;
   }
+
+  /* ---------- THEME TOGGLE ---------- */
+
+  .theme-toggle{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:none;
+    border:1px solid var(--line);
+    color:var(--text-muted);
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    padding:6px 12px;
+    border-radius:2px;
+    cursor:pointer;
+    transition:color .2s ease, border-color .2s ease;
+  }
+
+  .theme-toggle:hover{
+    color:var(--accent);
+    border-color:var(--accent);
+  }
+
+  .theme-toggle svg{
+    width:12px;
+    height:12px;
+    flex-shrink:0;
+  }
+
+  [data-theme="light"] .icon-moon{display:none;}
+  [data-theme="dark"] .icon-sun,
+  :root:not([data-theme="light"]) .icon-sun{display:none;}
 </style>
 </head>
 <body>
-
+<script>
+  (function(){
+    const stored = localStorage.getItem('portfolio-theme');
+    const theme = stored || 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
 <div class="wrap">
   <div class="top-meta">
-    <span class="status"><span class="dot"></span>Jr. AI Research Fellow, Dhirubhai Ambani University</span>
-    <span>Ahmedabad, IN · UTC+5:30</span>
+    <span class="status"><span class="dot"></span>Open to research collaborations</span>
+    <div style="display:flex;align-items:center;gap:20px;">
+      <span>Ahmedabad, IN · UTC+5:30</span>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <span id="themeLabel">Light</span>
+      </button>
+    </div>
   </div>
 </div>
 
@@ -590,6 +736,7 @@
             <li>Architected <strong style="color:var(--text-headline)">SUR</strong>, a novel knowledge graph construction formulation separating fact grounding, relational organization, and graph representation into dependency-aware stages — implemented via SAGE-KG for robust schema-free KG construction with small open-source LLMs.</li>
             <li>Designed a sequential agentic orchestration pipeline achieving <span class="metric">92.95%</span> factual capture on MINE and <span class="metric">95%</span> entity recovery on SemEval-2010 — outperforming GPT-4o-based baselines (KGGen: <span class="metric">66.07%</span>) while running on Qwen2.5-14B at 4-bit quantization.</li>
             <li>Evaluated across HotpotQA, MuSiQue, and 2WikiMultiHopQA; integrating SAGE-KG with HippoRAG2 achieved <span class="metric">64.4%</span> Exact Match on 2WikiMultiHopQA and cut LLM call overhead by <span class="metric">73%</span> over KGGen.</li>
+            <li>Applied deployment: <a href="https://policy-qa.vercel.app/" target="_blank" rel="noopener" style="color:var(--accent); border-bottom:1px solid var(--accent); padding-bottom:1px;">PolicySense</a> — a grounded policy Q&amp;A tool built on this same retrieval mechanism.</li>
           </ul>
           <h4>Adaptive Cross-Encoder Graph-Vector Retrieval for Multi-Hop Reasoning</h4>
           <ul>
@@ -663,17 +810,54 @@
     <div class="section-body">
 
       <div class="project">
-        <div class="project-year mono">Independent</div>
+        <div class="project-year mono">Flagship</div>
         <div class="project-main">
-          <h3>Physics-Guided Latent Inference of PV System Losses</h3>
-          <p>Engineered a loss estimation pipeline for a 40.29 kWp rooftop installation (HKUST, Hong Kong), fusing SAPM, CEC single-diode, SAM, and PVWatts physics models with irradiance decomposition via pvlib. Trained two encoder-decoder autoencoders to infer a unified latent loss signal, validated against real plant generation data.</p>
+          <h3>PolicySense — Policy Q&amp;A, grounded</h3>
+          <p>Applied deployment of the same sequential agentic retrieval mechanism developed in my EMNLP'26 research — grounding answers in official renewable energy policy documents rather than model memory, with full source attribution back to the source text. Live and testable — currently covers U.S. policy, with India coverage in progress.</p>
           <div class="project-tags">
-            <span>Physics-ML</span>
-            <span>Autoencoders</span>
-            <span>pvlib</span>
+            <span>RAG</span>
+            <span>Policy</span>
+            <span>Grounded QA</span>
           </div>
         </div>
-        <div class="project-link">—</div>
+        <a href="https://policy-qa.vercel.app/" target="_blank" rel="noopener" class="project-link">live app →</a>
+      </div>
+
+      <div class="project-combined">
+        <div class="combined-header">
+          <h3 style="font-family:'Space Grotesk', sans-serif; font-size:20px; font-weight:600; color:var(--text-headline);">Rooftop-to-Energy Pipeline</h3>
+          <a href="https://roof-scan-live.vercel.app/" target="_blank" rel="noopener" class="project-link" style="color:var(--text-muted);">live app →</a>
+        </div>
+        <div class="combined-parts">
+
+          <div class="part">
+            <div class="part-tag mono">Part 1</div>
+            <div class="part-main">
+              <h4>Prompt-Conditioned Rooftop Delineation in Dense Urban Satellite Imagery</h4>
+              <p>Fine-tuned SAM to extract pixel-precise roof boundaries from satellite imagery given only a single point prompt — solving the instance-merging failure of classical segmentation in dense, wall-sharing urban scenes. Froze the ViT encoder, fine-tuned only the mask decoder and prompt encoder with a composite focal + dice loss. Fine-tuned SAM1 ViT-H reached <span style="color:var(--accent)">IoU 0.834</span> and <span style="color:var(--accent)">Boundary F-score 0.991</span> on a custom Indian rooftop dataset — roughly double zero-shot SAM's IoU. Difficulty-bin analysis found shape irregularity, not scale or density, as the dominant failure mode. Output is GIS-ready: Web Mercator tiling, morphological closing, and Douglas–Peucker simplification yield real-world polygon areas in m².</p>
+              <div class="part-tags">
+                <span>SAM</span>
+                <span>Instance Segmentation</span>
+                <span>Geospatial</span>
+                <span>DL / IT549</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="part">
+            <div class="part-tag mono">Part 2</div>
+            <div class="part-main">
+              <h4>Physics-Guided Latent Inference of PV System Losses</h4>
+              <p>Once a roof is delineated, estimate its solar potential. Fused four physics models — SAPM, CEC single-diode, SAM, PVWatts — with pvlib irradiance decomposition for a 40.29 kWp rooftop (HKUST, Hong Kong). Two encoder-decoder autoencoders learn a unified latent loss signal, validated against real plant generation data.</p>
+              <div class="part-tags">
+                <span>Physics-ML</span>
+                <span>Autoencoders</span>
+                <span>pvlib</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
 
       <div class="project">
@@ -788,5 +972,26 @@
   </footer>
 </div>
 
+<script>
+  (function(){
+    const btn = document.getElementById('themeToggle');
+    const label = document.getElementById('themeLabel');
+
+    function updateLabel(){
+      const current = document.documentElement.getAttribute('data-theme');
+      label.textContent = current === 'light' ? 'Dark' : 'Light';
+    }
+
+    updateLabel();
+
+    btn.addEventListener('click', function(){
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('portfolio-theme', next);
+      updateLabel();
+    });
+  })();
+</script>
 </body>
 </html>

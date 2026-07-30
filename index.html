@@ -522,6 +522,11 @@ const EDIT_PASSWORD = "devansh2026"; // change this to whatever you like
 const STORAGE_KEY = "portfolio-data";
 const SESSION_FLAG = "portfolio-unlocked";
 
+const SUPABASE_URL = "https://zpqhcmynkupiactqckha.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_Ur7NJJAk0_tF5bQ3T5Vqjg_2YxSqWuh";
+const SUPABASE_TABLE = "portfolio_data";
+const SUPABASE_ROW_ID = "main";
+
 /* ============================================================
    DEFAULT DATA (mirrors the original hardcoded site)
    ============================================================ */
@@ -648,18 +653,62 @@ let DATA = null;
    STORAGE HELPERS
    ============================================================ */
 async function loadData(){
+  // Try Supabase first (source of truth, shared across devices)
+  try{
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}?id=eq.${SUPABASE_ROW_ID}&select=data`,
+      {
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+        }
+      }
+    );
+    if(res.ok){
+      const rows = await res.json();
+      if(rows && rows[0] && rows[0].data && Object.keys(rows[0].data).length){
+        const merged = Object.assign({}, DEFAULTS, rows[0].data);
+        try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(merged)); }catch(e){}
+        return merged;
+      }
+    } else {
+      console.warn('Supabase load failed, status', res.status);
+    }
+  }catch(e){
+    console.warn('Supabase unreachable, falling back to local cache', e);
+  }
+
+  // Fallback: local cache (e.g. offline, or Supabase not reachable)
   try{
     const raw = localStorage.getItem(STORAGE_KEY);
-    if(raw){
-      const parsed = JSON.parse(raw);
-      return Object.assign({}, DEFAULTS, parsed);
-    }
-  }catch(e){ /* no saved data yet, or storage unavailable */ }
+    if(raw) return Object.assign({}, DEFAULTS, JSON.parse(raw));
+  }catch(e){ /* ignore */ }
+
   return JSON.parse(JSON.stringify(DEFAULTS));
 }
 
 async function saveData(data){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  // Always cache locally first so nothing is lost even if the network call fails
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }catch(e){}
+
+  const res = await fetch(
+    `${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}?id=eq.${SUPABASE_ROW_ID}`,
+    {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ data: data, updated_at: new Date().toISOString() })
+    }
+  );
+
+  if(!res.ok){
+    const text = await res.text().catch(()=> '');
+    throw new Error(`Supabase save failed (${res.status}): ${text}`);
+  }
 }
 
 function exportData(){
@@ -1079,24 +1128,29 @@ function initEvents(){
       readRepeatFieldsIntoData();
       await saveData(DATA);
       renderPublic();
-      status.textContent = 'Saved ✓';
+      status.textContent = 'Synced ✓';
       status.classList.add('ok');
-      showToast('Changes saved');
-      setTimeout(()=>{ status.textContent=''; }, 2500);
+      showToast('Changes saved to all devices');
+      setTimeout(()=>{ status.textContent=''; }, 3000);
     }catch(err){
-      status.textContent = 'Save failed';
+      status.textContent = 'Sync failed — saved locally only';
       console.error(err);
+      showToast('Could not reach cloud — saved on this device only');
     }
   });
 
   // Reset
   document.getElementById('resetBtn').addEventListener('click', async ()=>{
-    if(!confirm('This will erase all your saved edits and restore the original content. Continue?')) return;
+    if(!confirm('This will erase all your saved edits and restore the original content on every device. Continue?')) return;
     DATA = JSON.parse(JSON.stringify(DEFAULTS));
-    try{ await saveData(DATA); }catch(e){}
+    try{
+      await saveData(DATA);
+      showToast('Reset to defaults (synced)');
+    }catch(e){
+      showToast('Reset locally — cloud sync failed');
+    }
     renderEditForm();
     renderPublic();
-    showToast('Reset to defaults');
   });
 }
 

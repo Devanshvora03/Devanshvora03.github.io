@@ -412,6 +412,9 @@
     <h1>Edit portfolio</h1>
     <div class="edit-actions">
       <span class="save-status" id="saveStatus"></span>
+      <input type="file" id="importFile" accept="application/json" style="display:none;">
+      <button class="btn btn-sm" id="importBtn">Import backup</button>
+      <button class="btn btn-sm" id="exportBtn">Export backup</button>
       <button class="btn" id="editCloseBtn">Close</button>
       <button class="btn btn-primary" id="saveAllBtn">Save changes</button>
     </div>
@@ -646,17 +649,43 @@ let DATA = null;
    ============================================================ */
 async function loadData(){
   try{
-    const res = await window.storage.get(STORAGE_KEY, false);
-    if(res && res.value){
-      const parsed = JSON.parse(res.value);
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){
+      const parsed = JSON.parse(raw);
       return Object.assign({}, DEFAULTS, parsed);
     }
-  }catch(e){ /* no saved data yet */ }
+  }catch(e){ /* no saved data yet, or storage unavailable */ }
   return JSON.parse(JSON.stringify(DEFAULTS));
 }
 
 async function saveData(data){
-  await window.storage.set(STORAGE_KEY, JSON.stringify(data), false);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function exportData(){
+  const blob = new Blob([JSON.stringify(DATA, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'portfolio-data.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function importDataFromFile(file){
+  return new Promise((resolve, reject)=>{
+    const reader = new FileReader();
+    reader.onload = () => {
+      try{
+        const parsed = JSON.parse(reader.result);
+        resolve(Object.assign({}, DEFAULTS, parsed));
+      }catch(e){ reject(e); }
+    };
+    reader.onerror = reject;
+    reader.readAsText(file);
+  });
 }
 
 /* ============================================================
@@ -1015,6 +1044,31 @@ function initEvents(){
     }
   });
 
+  // Export / Import
+  document.getElementById('exportBtn').addEventListener('click', ()=>{
+    readSimpleFieldsIntoData();
+    readRepeatFieldsIntoData();
+    exportData();
+    showToast('Backup downloaded');
+  });
+  document.getElementById('importBtn').addEventListener('click', ()=>{
+    document.getElementById('importFile').click();
+  });
+  document.getElementById('importFile').addEventListener('change', async (e)=>{
+    const file = e.target.files[0];
+    if(!file) return;
+    try{
+      DATA = await importDataFromFile(file);
+      await saveData(DATA);
+      renderEditForm();
+      renderPublic();
+      showToast('Backup imported');
+    }catch(err){
+      alert('Could not read that file — make sure it\'s a backup exported from this page.');
+    }
+    e.target.value = '';
+  });
+
   // Save
   document.getElementById('saveAllBtn').addEventListener('click', async ()=>{
     const status = document.getElementById('saveStatus');
@@ -1057,6 +1111,12 @@ function showToast(msg){
    INIT
    ============================================================ */
 (async function init(){
+  try{
+    localStorage.setItem('__test__','1');
+    localStorage.removeItem('__test__');
+  }catch(e){
+    console.warn('localStorage unavailable — edits will not persist in this browser.');
+  }
   DATA = await loadData();
   renderPublic();
   initEvents();

@@ -18,6 +18,7 @@
     --text-muted:#4a5a80;
     --accent:#3d8f7a;
     --line:#1c2740;
+    --danger:#b5533f;
   }
 
   [data-theme="light"]{
@@ -32,9 +33,7 @@
   }
 
   *{margin:0;padding:0;box-sizing:border-box;}
-
   html{scroll-behavior:smooth;}
-
   body{
     background:var(--bg);
     color:var(--text-body);
@@ -45,11 +44,8 @@
     overflow-x:hidden;
     transition:background .3s ease, color .3s ease;
   }
-
   ::selection{background:var(--accent);color:var(--bg);}
-
   a{color:inherit;text-decoration:none;}
-
   .mono{font-family:'JetBrains Mono', monospace;}
 
   .wrap{
@@ -72,10 +68,7 @@
     align-self:start;
     height:0;
   }
-
   .rail span{display:block;}
-
-  /* ---------- HEADER ---------- */
 
   header{padding:80px 0 60px;}
 
@@ -92,16 +85,11 @@
     margin-bottom:64px;
     padding-bottom:20px;
     border-bottom:1px solid var(--line);
+    flex-wrap:wrap;
+    gap:12px;
   }
-
-  .top-meta .status{
-    display:flex;align-items:center;gap:8px;
-  }
-  .dot{
-    width:6px;height:6px;border-radius:50%;
-    background:var(--accent);
-    box-shadow:0 0 8px var(--accent);
-  }
+  .top-meta .status{display:flex;align-items:center;gap:8px;}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);}
 
   .name{
     font-family:'Space Grotesk', sans-serif;
@@ -111,555 +99,238 @@
     letter-spacing:-0.02em;
     color:var(--text-headline);
     margin-bottom:20px;
+    white-space:pre-line;
   }
-
   .name .accent-dot{color:var(--accent);}
 
-  .role-line{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px 0;
-    align-items:baseline;
-    margin-bottom:40px;
-  }
+  .role-line{display:flex;flex-wrap:wrap;gap:10px 0;align-items:baseline;margin-bottom:40px;}
+  .role-line .role{font-family:'Space Grotesk', sans-serif;font-size:20px;font-weight:500;color:var(--text-body);}
+  .role-line .sep{color:var(--text-muted);margin:0 14px;font-family:'JetBrains Mono', monospace;font-size:14px;}
 
-  .role-line .role{
-    font-family:'Space Grotesk', sans-serif;
-    font-size:20px;
-    font-weight:500;
-    color:var(--text-body);
-  }
+  .tagline{font-size:17px;font-weight:300;color:var(--text-body);max-width:620px;margin-bottom:36px;}
+  .tagline strong{color:var(--text-headline);font-weight:500;}
 
-  .role-line .sep{
-    color:var(--text-muted);
-    margin:0 14px;
-    font-family:'JetBrains Mono', monospace;
-    font-size:14px;
-  }
+  .links-row{display:flex;gap:28px;flex-wrap:wrap;font-family:'JetBrains Mono', monospace;font-size:13px;}
+  .links-row a{color:var(--text-body);border-bottom:1px solid var(--line);padding-bottom:2px;transition:color .2s ease, border-color .2s ease;}
+  .links-row a:hover{color:var(--accent);border-color:var(--accent);}
 
-  .tagline{
-    font-size:17px;
-    font-weight:300;
-    color:var(--text-body);
-    max-width:620px;
-    margin-bottom:36px;
-  }
-
-  .tagline strong{
-    color:var(--text-headline);
-    font-weight:500;
-  }
-
-  .links-row{
-    display:flex;
-    gap:28px;
-    flex-wrap:wrap;
-    font-family:'JetBrains Mono', monospace;
-    font-size:13px;
-  }
-
-  .links-row a{
-    color:var(--text-body);
-    border-bottom:1px solid var(--line);
-    padding-bottom:2px;
-    transition:color .2s ease, border-color .2s ease;
-  }
-  .links-row a:hover{
-    color:var(--accent);
-    border-color:var(--accent);
-  }
-
-  /* ---------- SECTION SHARED ---------- */
-
-  section{
-    padding:64px 0;
-    border-bottom:1px solid var(--line);
-  }
-
+  section{padding:64px 0;border-bottom:1px solid var(--line);}
   section:last-of-type{border-bottom:none;}
 
-  .section-head{
-    grid-column:2;
-    display:flex;
-    align-items:baseline;
-    gap:16px;
-    margin-bottom:40px;
-  }
-
-  .section-num{
-    font-family:'JetBrains Mono', monospace;
-    font-size:12px;
-    color:var(--accent);
-    letter-spacing:0.05em;
-  }
-
-  .section-title{
-    font-family:'Space Grotesk', sans-serif;
-    font-size:28px;
-    font-weight:600;
-    color:var(--text-headline);
-    letter-spacing:-0.01em;
-  }
-
+  .section-head{grid-column:2;display:flex;align-items:baseline;gap:16px;margin-bottom:40px;}
+  .section-num{font-family:'JetBrains Mono', monospace;font-size:12px;color:var(--accent);letter-spacing:0.05em;}
+  .section-title{font-family:'Space Grotesk', sans-serif;font-size:28px;font-weight:600;color:var(--text-headline);letter-spacing:-0.01em;}
   .section-body{grid-column:2;}
 
-  /* ---------- ABOUT ---------- */
-
-  .about-text{
-    font-size:16px;
-    font-weight:300;
-    color:var(--text-body);
-    max-width:680px;
-    line-height:1.85;
-  }
-
+  .about-text{font-size:16px;font-weight:300;color:var(--text-body);max-width:680px;line-height:1.85;white-space:pre-line;}
   .about-text p + p{margin-top:18px;}
 
-  .stack-list{
-    margin-top:36px;
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-  }
+  .stack-list{margin-top:36px;display:flex;flex-wrap:wrap;gap:10px;}
+  .stack-item{font-family:'JetBrains Mono', monospace;font-size:12px;color:var(--text-body);border:1px solid var(--line);padding:6px 12px;border-radius:2px;letter-spacing:0.02em;}
 
-  .stack-item{
-    font-family:'JetBrains Mono', monospace;
-    font-size:12px;
-    color:var(--text-body);
-    border:1px solid var(--line);
-    padding:6px 12px;
-    border-radius:2px;
-    letter-spacing:0.02em;
-  }
+  .xp{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:32px 0;border-top:1px solid var(--line);}
+  .xp:first-child{border-top:none;}
+  .xp-meta{padding-top:2px;}
+  .xp-role{font-family:'Space Grotesk', sans-serif;font-size:15px;font-weight:600;color:var(--text-headline);margin-bottom:4px;}
+  .xp-org{font-size:13px;color:var(--text-body);margin-bottom:8px;}
+  .xp-dates{font-family:'JetBrains Mono', monospace;font-size:11px;color:var(--text-muted);letter-spacing:0.02em;}
+  .xp-body h4{font-family:'Space Grotesk', sans-serif;font-size:15px;font-weight:600;color:var(--text-headline);margin-bottom:10px;margin-top:22px;}
+  .xp-body h4:first-child{margin-top:0;}
+  .xp-body ul{list-style:none;padding:0;}
+  .xp-body li{position:relative;padding-left:20px;font-size:14px;font-weight:300;color:var(--text-body);line-height:1.7;margin-bottom:10px;white-space:pre-line;}
+  .xp-body li::before{content:"—";position:absolute;left:0;color:var(--text-muted);}
 
-  /* ---------- WORK / PROJECTS ---------- */
-
-  .project-combined{
-    padding:28px 0;
-    border-top:1px solid var(--line);
-  }
-  .project-combined:first-child{border-top:none;}
-
-  .combined-header{
-    display:flex;
-    align-items:baseline;
-    justify-content:space-between;
-    margin-bottom:20px;
-    gap:16px;
-    flex-wrap:wrap;
-  }
-
-  .combined-label{
-    font-family:'JetBrains Mono', monospace;
-    font-size:11px;
-    color:var(--text-muted);
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-  }
-
-  .combined-parts{
-    display:flex;
-    flex-direction:column;
-    gap:28px;
-  }
-
-  .part{
-    display:grid;
-    grid-template-columns:64px 1fr;
-    gap:20px;
-  }
-
-  .part-tag{
-    font-family:'JetBrains Mono', monospace;
-    font-size:11px;
-    color:var(--accent);
-    padding-top:2px;
-    letter-spacing:0.03em;
-  }
-
-  .part-main h4{
-    font-family:'Space Grotesk', sans-serif;
-    font-size:18px;
-    font-weight:600;
-    color:var(--text-headline);
-    margin-bottom:8px;
-  }
-
-  .part-main p{
-    font-size:14px;
-    font-weight:300;
-    color:var(--text-body);
-    max-width:600px;
-    margin-bottom:10px;
-    line-height:1.75;
-  }
-
-  .part-tags{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-  }
-
-  .part-tags span{
-    font-family:'JetBrains Mono', monospace;
-    font-size:10px;
-    color:var(--text-muted);
-    letter-spacing:0.04em;
-    text-transform:uppercase;
-    border:1px solid var(--line);
-    padding:3px 8px;
-    border-radius:2px;
-  }
-
-  .project{
-    display:grid;
-    grid-template-columns:100px 1fr auto;
-    gap:24px;
-    align-items:start;
-    padding:28px 0;
-    border-top:1px solid var(--line);
-    transition:background .2s ease;
-  }
+  .project{display:grid;grid-template-columns:100px 1fr auto;gap:24px;align-items:start;padding:28px 0;border-top:1px solid var(--line);}
   .project:first-child{border-top:none;}
-
-  .project-year{
-    font-family:'JetBrains Mono', monospace;
-    font-size:12px;
-    color:var(--text-muted);
-    padding-top:4px;
-  }
-
-  .project-main h3{
-    font-family:'Space Grotesk', sans-serif;
-    font-size:20px;
-    font-weight:600;
-    color:var(--text-headline);
-    margin-bottom:8px;
-  }
-
-  .project-main p{
-    font-size:14.5px;
-    font-weight:300;
-    color:var(--text-body);
-    max-width:560px;
-    margin-bottom:12px;
-  }
-
-  .project-tags{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-  }
-
-  .project-tags span{
-    font-family:'JetBrains Mono', monospace;
-    font-size:10.5px;
-    color:var(--accent);
-    letter-spacing:0.04em;
-    text-transform:uppercase;
-  }
-
-  .project-tags span::after{
-    content:"·";
-    color:var(--text-muted);
-    margin-left:8px;
-  }
+  .project-year{font-family:'JetBrains Mono', monospace;font-size:12px;color:var(--text-muted);padding-top:4px;}
+  .project-main h3{font-family:'Space Grotesk', sans-serif;font-size:20px;font-weight:600;color:var(--text-headline);margin-bottom:8px;}
+  .project-main p{font-size:14.5px;font-weight:300;color:var(--text-body);max-width:560px;margin-bottom:12px;}
+  .project-tags{display:flex;gap:8px;flex-wrap:wrap;}
+  .project-tags span{font-family:'JetBrains Mono', monospace;font-size:10.5px;color:var(--accent);letter-spacing:0.04em;text-transform:uppercase;}
+  .project-tags span::after{content:"·";color:var(--text-muted);margin-left:8px;}
   .project-tags span:last-child::after{content:"";}
-
-  .project-link{
-    font-family:'JetBrains Mono', monospace;
-    font-size:12px;
-    color:var(--text-muted);
-    padding-top:4px;
-    white-space:nowrap;
-    transition:color .2s ease;
-  }
+  .project-link{font-family:'JetBrains Mono', monospace;font-size:12px;color:var(--text-muted);padding-top:4px;white-space:nowrap;transition:color .2s ease;}
   .project:hover .project-link{color:var(--accent);}
 
-  /* ---------- EXPERIENCE ---------- */
-
-  .xp{
-    display:grid;
-    grid-template-columns:200px 1fr;
-    gap:24px;
-    padding:32px 0;
-    border-top:1px solid var(--line);
-  }
-  .xp:first-child{border-top:none;}
-
-  .xp-meta{padding-top:2px;}
-
-  .xp-role{
-    font-family:'Space Grotesk', sans-serif;
-    font-size:15px;
-    font-weight:600;
-    color:var(--text-headline);
-    margin-bottom:4px;
-  }
-
-  .xp-org{
-    font-size:13px;
-    color:var(--text-body);
-    margin-bottom:8px;
-  }
-
-  .xp-dates{
-    font-family:'JetBrains Mono', monospace;
-    font-size:11px;
-    color:var(--text-muted);
-    letter-spacing:0.02em;
-  }
-
-  .xp-body h4{
-    font-family:'Space Grotesk', sans-serif;
-    font-size:15px;
-    font-weight:600;
-    color:var(--text-headline);
-    margin-bottom:10px;
-    margin-top:22px;
-  }
-  .xp-body h4:first-child{margin-top:0;}
-
-  .xp-badge{
-    display:inline-block;
-    font-family:'JetBrains Mono', monospace;
-    font-size:10px;
-    color:var(--accent);
-    border:1px solid var(--accent);
-    padding:2px 8px;
-    border-radius:2px;
-    letter-spacing:0.04em;
-    margin-left:10px;
-    vertical-align:middle;
-    text-transform:uppercase;
-  }
-
-  .xp-body ul{
-    list-style:none;
-    padding:0;
-  }
-
-  .xp-body li{
-    position:relative;
-    padding-left:20px;
-    font-size:14px;
-    font-weight:300;
-    color:var(--text-body);
-    line-height:1.7;
-    margin-bottom:10px;
-  }
-
-  .xp-body li::before{
-    content:"—";
-    position:absolute;
-    left:0;
-    color:var(--text-muted);
-  }
-
-  .xp-body li .metric{
-    color:var(--accent);
-    font-family:'JetBrains Mono', monospace;
-    font-size:13px;
-  }
-
-  /* ---------- WRITING / PUBLICATIONS ---------- */
-
-  .pub{
-    padding:20px 0;
-    border-top:1px solid var(--line);
-    display:grid;
-    grid-template-columns:1fr auto;
-    gap:16px;
-    align-items:baseline;
-  }
+  .pub{padding:20px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:16px;align-items:baseline;}
   .pub:first-child{border-top:none;}
+  .pub-title{font-size:15px;font-weight:400;color:var(--text-headline);}
+  .pub-venue{font-family:'JetBrains Mono', monospace;font-size:11.5px;color:var(--text-muted);margin-top:4px;}
+  .pub-link{font-family:'JetBrains Mono', monospace;font-size:12px;color:var(--accent);}
 
-  .pub-title{
-    font-size:15px;
-    font-weight:400;
-    color:var(--text-headline);
-  }
-
-  .pub-venue{
-    font-family:'JetBrains Mono', monospace;
-    font-size:11.5px;
-    color:var(--text-muted);
-    margin-top:4px;
-  }
-
-  .pub-link{
-    font-family:'JetBrains Mono', monospace;
-    font-size:12px;
-    color:var(--accent);
-  }
-
-  /* ---------- CONTACT / FOOTER ---------- */
-
-  .contact-title{
-    font-family:'Space Grotesk', sans-serif;
-    font-size:clamp(32px, 5vw, 52px);
-    font-weight:600;
-    color:var(--text-headline);
-    max-width:640px;
-    line-height:1.2;
-    margin-bottom:28px;
-  }
-
+  .contact-title{font-family:'Space Grotesk', sans-serif;font-size:clamp(32px, 5vw, 52px);font-weight:600;color:var(--text-headline);max-width:640px;line-height:1.2;margin-bottom:28px;}
   .contact-title .accent-dot{color:var(--accent);}
-
-  .contact-links{
-    display:flex;
-    gap:32px;
-    flex-wrap:wrap;
-    margin-top:8px;
-  }
-
-  .contact-links a{
-    font-family:'JetBrains Mono', monospace;
-    font-size:14px;
-    color:var(--text-body);
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    transition:color .2s ease;
-  }
+  .contact-links{display:flex;gap:32px;flex-wrap:wrap;margin-top:8px;}
+  .contact-links a{font-family:'JetBrains Mono', monospace;font-size:14px;color:var(--text-body);display:inline-flex;align-items:center;gap:8px;transition:color .2s ease;}
   .contact-links a:hover{color:var(--accent);}
+  .contact-links a::before{content:"→";color:var(--accent);}
 
-  .contact-links a::before{
-    content:"→";
-    color:var(--accent);
-  }
-
-  footer{
-    grid-column:2;
-    padding:40px 0 60px;
-    font-family:'JetBrains Mono', monospace;
-    font-size:11px;
-    color:var(--text-muted);
-    display:flex;
-    justify-content:space-between;
-    letter-spacing:0.04em;
-  }
-
-  /* ---------- RESPONSIVE ---------- */
+  footer{grid-column:2;padding:40px 0 60px;font-family:'JetBrains Mono', monospace;font-size:11px;color:var(--text-muted);display:flex;justify-content:space-between;letter-spacing:0.04em;}
 
   @media (max-width:780px){
-    .wrap{
-      grid-template-columns:1fr;
-      padding:0 24px;
-    }
+    .wrap{grid-template-columns:1fr;padding:0 24px;}
     .rail{display:none;}
     .top-meta, .section-head, .section-body, footer{grid-column:1;}
-    .top-meta{flex-wrap:wrap;gap:12px;}
     header{padding:48px 0 40px;}
-    .project{
-      grid-template-columns:1fr;
-      gap:8px;
-    }
-    .project-year{padding-top:0;}
-    .part{
-      grid-template-columns:1fr;
-      gap:6px;
-    }
-    .combined-header{
-      flex-direction:column;
-      align-items:flex-start;
-      gap:8px;
-    }
-    .xp{
-      grid-template-columns:1fr;
-      gap:10px;
-    }
+    .project{grid-template-columns:1fr;gap:8px;}
+    .xp{grid-template-columns:1fr;gap:10px;}
     .pub{grid-template-columns:1fr;gap:6px;}
     .contact-links{flex-direction:column;gap:14px;}
   }
-
-  @media (prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto;}
-    *{transition:none !important;}
-  }
-
-  :focus-visible{
-    outline:2px solid var(--accent);
-    outline-offset:3px;
-  }
-
-  /* ---------- THEME TOGGLE ---------- */
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto;} *{transition:none !important;} }
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
 
   .theme-toggle{
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    background:none;
-    border:1px solid var(--line);
-    color:var(--text-muted);
-    font-family:'JetBrains Mono', monospace;
-    font-size:11px;
-    letter-spacing:0.05em;
-    text-transform:uppercase;
-    padding:6px 12px;
-    border-radius:2px;
-    cursor:pointer;
-    transition:color .2s ease, border-color .2s ease;
+    display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--line);
+    color:var(--text-muted);font-family:'JetBrains Mono', monospace;font-size:11px;letter-spacing:0.05em;
+    text-transform:uppercase;padding:6px 12px;border-radius:2px;cursor:pointer;transition:color .2s ease, border-color .2s ease;
   }
-
-  .theme-toggle:hover{
-    color:var(--accent);
-    border-color:var(--accent);
-  }
-
-  .theme-toggle svg{
-    width:12px;
-    height:12px;
-    flex-shrink:0;
-  }
-
+  .theme-toggle:hover{color:var(--accent);border-color:var(--accent);}
+  .theme-toggle svg{width:12px;height:12px;flex-shrink:0;}
   [data-theme="light"] .icon-moon{display:none;}
-  [data-theme="dark"] .icon-sun,
-  :root:not([data-theme="light"]) .icon-sun{display:none;}
+  [data-theme="dark"] .icon-sun, :root:not([data-theme="light"]) .icon-sun{display:none;}
+
+  /* ===================== EDIT MODE ===================== */
+
+  .edit-toggle{
+    display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--line);
+    color:var(--text-muted);font-family:'JetBrains Mono', monospace;font-size:11px;letter-spacing:0.05em;
+    text-transform:uppercase;padding:6px 12px;border-radius:2px;cursor:pointer;transition:color .2s ease, border-color .2s ease;
+  }
+  .edit-toggle:hover{color:var(--accent);border-color:var(--accent);}
+
+  #lockOverlay{
+    position:fixed;inset:0;background:var(--bg);z-index:200;
+    display:none;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono', monospace;
+  }
+  #lockOverlay.open{display:flex;}
+  .lock-box{width:min(340px, 86vw);text-align:center;}
+  .lock-box h2{font-family:'Space Grotesk',sans-serif;color:var(--text-headline);font-size:20px;margin-bottom:20px;}
+  .lock-box input{
+    width:100%;background:var(--surface-2);border:1px solid var(--line);color:var(--text-headline);
+    padding:12px 14px;border-radius:2px;font-family:'JetBrains Mono', monospace;font-size:14px;margin-bottom:14px;
+  }
+  .lock-box input:focus{outline:none;border-color:var(--accent);}
+  .lock-box button{
+    width:100%;background:var(--accent);color:var(--bg);border:none;padding:12px;border-radius:2px;
+    font-family:'JetBrains Mono', monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;
+    cursor:pointer;font-weight:500;
+  }
+  .lock-err{color:var(--danger);font-size:11px;margin-top:10px;min-height:14px;}
+  .lock-close{margin-top:18px;color:var(--text-muted);font-size:11px;cursor:pointer;text-decoration:underline;}
+
+  #editPanel{
+    position:fixed;inset:0;background:var(--bg);z-index:150;overflow-y:auto;display:none;
+  }
+  #editPanel.open{display:block;}
+
+  .edit-header{
+    position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);
+    padding:18px 32px;display:flex;justify-content:space-between;align-items:center;z-index:5;
+  }
+  .edit-header h1{font-family:'Space Grotesk',sans-serif;font-size:18px;color:var(--text-headline);}
+  .edit-actions{display:flex;gap:10px;align-items:center;}
+
+  .btn{
+    font-family:'JetBrains Mono', monospace;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;
+    padding:9px 16px;border-radius:2px;cursor:pointer;border:1px solid var(--line);background:none;color:var(--text-body);
+    transition:all .2s ease;
+  }
+  .btn:hover{border-color:var(--accent);color:var(--accent);}
+  .btn-primary{background:var(--accent);color:var(--bg);border-color:var(--accent);font-weight:500;}
+  .btn-primary:hover{opacity:.88;color:var(--bg);}
+  .btn-danger{color:var(--danger);border-color:var(--line);}
+  .btn-danger:hover{border-color:var(--danger);color:var(--danger);}
+  .btn-sm{padding:6px 10px;font-size:10px;}
+
+  .save-status{font-family:'JetBrains Mono', monospace;font-size:11px;color:var(--text-muted);min-width:90px;}
+  .save-status.ok{color:var(--accent);}
+
+  .edit-body{max-width:920px;margin:0 auto;padding:40px 32px 120px;}
+
+  .edit-section{border:1px solid var(--line);border-radius:4px;padding:28px;margin-bottom:24px;background:var(--surface);}
+  .edit-section h2{font-family:'Space Grotesk',sans-serif;font-size:17px;color:var(--text-headline);margin-bottom:22px;display:flex;align-items:center;gap:10px;}
+  .edit-section h2 .n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);}
+
+  .field{margin-bottom:18px;}
+  .field:last-child{margin-bottom:0;}
+  .field label{
+    display:block;font-family:'JetBrains Mono', monospace;font-size:10.5px;color:var(--text-muted);
+    letter-spacing:0.05em;text-transform:uppercase;margin-bottom:7px;
+  }
+  .field input, .field textarea{
+    width:100%;background:var(--surface-2);border:1px solid var(--line);color:var(--text-headline);
+    padding:10px 12px;border-radius:2px;font-family:'Inter',sans-serif;font-size:14px;
+  }
+  .field input:focus, .field textarea:focus{outline:none;border-color:var(--accent);}
+  .field textarea{resize:vertical;min-height:70px;line-height:1.6;font-family:'JetBrains Mono',monospace;font-size:12.5px;}
+  .field .hint{font-size:11px;color:var(--text-muted);margin-top:5px;}
+
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media (max-width:640px){.grid-2{grid-template-columns:1fr;}}
+
+  .stack-block{border:1px solid var(--line);border-radius:3px;padding:16px;margin-bottom:14px;position:relative;background:var(--surface-2);}
+  .stack-block .remove-btn{position:absolute;top:12px;right:12px;}
+
+  .repeat-list{display:flex;flex-direction:column;gap:16px;}
+  .add-row{margin-top:16px;}
+
+  .drag-handle{
+    font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted);
+    display:flex;align-items:center;gap:8px;margin-bottom:12px;
+  }
+
+  #savedToast{
+    position:fixed;bottom:24px;right:24px;background:var(--accent);color:var(--bg);
+    font-family:'JetBrains Mono',monospace;font-size:12px;padding:12px 18px;border-radius:3px;
+    z-index:300;opacity:0;transform:translateY(10px);transition:all .25s ease;pointer-events:none;
+  }
+  #savedToast.show{opacity:1;transform:translateY(0);}
+
+  .empty-note{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);padding:20px 0;}
 </style>
 </head>
 <body>
 <script>
   (function(){
     const stored = localStorage.getItem('portfolio-theme');
-    const theme = stored || 'dark';
-    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.setAttribute('data-theme', stored || 'dark');
   })();
 </script>
+
+<!-- ===================== PUBLIC SITE ===================== -->
+
 <div class="wrap">
   <div class="top-meta">
-    <span class="status"><span class="dot"></span>Open to research collaborations</span>
+    <span class="status"><span class="dot"></span><span id="v-status">Open to research collaborations</span></span>
     <div style="display:flex;align-items:center;gap:20px;">
-      <span>Ahmedabad, IN · UTC+5:30</span>
+      <span id="v-location">Ahmedabad, IN · UTC+5:30</span>
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
         <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         <span id="themeLabel">Light</span>
       </button>
+      <button class="edit-toggle" id="editOpenBtn">Edit</button>
     </div>
   </div>
 </div>
 
 <header>
   <div class="wrap">
-    <div class="rail">
-      <span>§ 00</span>
-    </div>
+    <div class="rail"><span>§ 00</span></div>
     <div>
-      <h1 class="name">Devansh<br>Vora<span class="accent-dot">.</span></h1>
-      <div class="role-line">
-        <span class="role">AI Researcher</span>
-        <span class="sep">/</span>
-        <span class="role">ML Engineer</span>
+      <h1 class="name" id="v-name">Devansh<br>Vora<span class="accent-dot">.</span></h1>
+      <div class="role-line" id="v-roles">
+        <span class="role">AI Researcher</span><span class="sep">/</span><span class="role">ML Engineer</span>
       </div>
-      <p class="tagline">
+      <p class="tagline" id="v-tagline">
         I research <strong>knowledge graph construction</strong> and <strong>retrieval-augmented
         reasoning</strong> for LLMs — currently building agentic pipelines that get small
         open-source models to outperform GPT-4o on structured extraction, under review at
         <strong>EMNLP'26</strong>.
       </p>
-      <div class="links-row">
+      <div class="links-row" id="v-links">
         <a href="mailto:devanshvora03@gmail.com">devanshvora03@gmail.com</a>
         <a href="https://github.com/Devanshvora03" target="_blank" rel="noopener">github.com/Devanshvora03</a>
         <a href="https://linkedin.com/in/devanshvora03" target="_blank" rel="noopener">linkedin.com/in/devanshvora03</a>
@@ -672,45 +343,10 @@
 <section id="about">
   <div class="wrap">
     <div class="rail"><span>§ 01</span></div>
-    <div class="section-head">
-      <span class="section-num">01</span>
-      <h2 class="section-title">About</h2>
-    </div>
+    <div class="section-head"><span class="section-num">01</span><h2 class="section-title">About</h2></div>
     <div class="section-body">
-      <div class="about-text">
-        <p>
-          I'm a Computer Engineering graduate (Government Engineering College, Gandhinagar,
-          CGPA 8.30) working as a <span style="color:var(--text-headline)">Jr. AI Research
-          Fellow</span> at the Smart Energy Learning Center, Dhirubhai Ambani University.
-          My research centers on <span style="color:var(--text-headline)">knowledge graph
-          construction</span> and <span style="color:var(--text-headline)">multi-hop
-          retrieval</span> — building agentic pipelines that make small, quantized
-          open-source LLMs competitive with much larger closed models.
-        </p>
-        <p>
-          Before this, I worked across three industry internships spanning
-          <span style="color:var(--text-headline)">computer vision</span> (brand infringement
-          detection with fine-tuned Vision Transformers), <span style="color:var(--text-headline)">generative
-          AI applications</span> (RAG systems, transcript analysis with LLMs), and
-          <span style="color:var(--text-headline)">backend engineering</span> (Django,
-          geospatial systems). I care about rigorous evaluation, reproducible results, and
-          systems that work under real resource constraints — not just on paper.
-        </p>
-      </div>
-      <div class="stack-list">
-        <span class="stack-item">PyTorch</span>
-        <span class="stack-item">Python / Java</span>
-        <span class="stack-item">LangChain</span>
-        <span class="stack-item">LlamaIndex</span>
-        <span class="stack-item">CrewAI</span>
-        <span class="stack-item">Hugging Face</span>
-        <span class="stack-item">Neo4j</span>
-        <span class="stack-item">DSPy</span>
-        <span class="stack-item">AWS (SageMaker, Bedrock, S3)</span>
-        <span class="stack-item">Docker / Runpod</span>
-        <span class="stack-item">FastAPI / Django REST</span>
-        <span class="stack-item">Streamlit</span>
-      </div>
+      <div class="about-text" id="v-about"></div>
+      <div class="stack-list" id="v-stack"></div>
     </div>
   </div>
 </section>
@@ -718,232 +354,24 @@
 <section id="experience">
   <div class="wrap">
     <div class="rail"><span>§ 02</span></div>
-    <div class="section-head">
-      <span class="section-num">02</span>
-      <h2 class="section-title">Experience</h2>
-    </div>
-    <div class="section-body">
-
-      <div class="xp">
-        <div class="xp-meta">
-          <div class="xp-role">Jr. AI Research Fellow</div>
-          <div class="xp-org">Smart Energy Learning Center — Dhirubhai Ambani University</div>
-          <div class="xp-dates">May 2025 — Present · Ahmedabad</div>
-        </div>
-        <div class="xp-body">
-          <h4>Sequential Uncertainty Resolution for Knowledge Graph Construction <span class="xp-badge">Under review · EMNLP'26</span></h4>
-          <ul>
-            <li>Architected <strong style="color:var(--text-headline)">SUR</strong>, a novel knowledge graph construction formulation separating fact grounding, relational organization, and graph representation into dependency-aware stages — implemented via SAGE-KG for robust schema-free KG construction with small open-source LLMs.</li>
-            <li>Designed a sequential agentic orchestration pipeline achieving <span class="metric">92.95%</span> factual capture on MINE and <span class="metric">95%</span> entity recovery on SemEval-2010 — outperforming GPT-4o-based baselines (KGGen: <span class="metric">66.07%</span>) while running on Qwen2.5-14B at 4-bit quantization.</li>
-            <li>Evaluated across HotpotQA, MuSiQue, and 2WikiMultiHopQA; integrating SAGE-KG with HippoRAG2 achieved <span class="metric">64.4%</span> Exact Match on 2WikiMultiHopQA and cut LLM call overhead by <span class="metric">73%</span> over KGGen.</li>
-            <li>Applied deployment: <a href="https://policy-qa.vercel.app/" target="_blank" rel="noopener" style="color:var(--accent); border-bottom:1px solid var(--accent); padding-bottom:1px;">PolicySense</a> — a grounded policy Q&amp;A tool built on this same retrieval mechanism.</li>
-          </ul>
-          <h4>Adaptive Cross-Encoder Graph-Vector Retrieval for Multi-Hop Reasoning</h4>
-          <ul>
-            <li>Developed a cluster-aware graph retrieval framework using agglomerative clustering over entity embeddings, enabling dynamic seed expansion via centroid similarity and TF-IDF hybrid scoring for sparse multi-hop queries.</li>
-            <li>Engineered a directional graph retriever using seed-based PathTrie generation via BFS, paired with a reverse lookup index and a cross-encoder for high-precision multi-hop reasoning.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="xp">
-        <div class="xp-meta">
-          <div class="xp-role">AI Research Intern</div>
-          <div class="xp-org">Communication Crafts Pvt. Ltd.</div>
-          <div class="xp-dates">Dec 2024 — May 2025 · Ahmedabad</div>
-        </div>
-        <div class="xp-body">
-          <h4>Brand Infringement Detection System</h4>
-          <ul>
-            <li>Fine-tuned Vision Transformers and Swin Transformers with FP16 mixed precision to detect logo infringement, reframing continuous similarity as discrete classification.</li>
-            <li>Developed a custom Local Interval Loss function, improving accuracy <span class="metric">3×</span> over traditional contrastive loss.</li>
-            <li>Implemented Flash Window Attention while preserving pretrained Swin Transformer weights; deployed as a serverless endpoint on RunPod with Docker and batch processing.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="xp">
-        <div class="xp-meta">
-          <div class="xp-role">AI Engineer Intern</div>
-          <div class="xp-org">Cilans Systems Pvt. Ltd.</div>
-          <div class="xp-dates">Jun 2024 — Jul 2024 · Ahmedabad</div>
-        </div>
-        <div class="xp-body">
-          <h4>Customer Agent Transcript Audit Report Generator</h4>
-          <ul>
-            <li>Built a GenAI application using Mistral-Large and GPT-4 to analyze agent-customer transcripts, automating reports on response quality, empathy, and problem-solving.</li>
-            <li>Used AWS Bedrock as the inference engine for Mistral-Large.</li>
-          </ul>
-          <h4>Legal-GPT</h4>
-          <ul>
-            <li>Built a RAG application over Indian Penal Code sections using GPT-4, Mistral, Gemini, and LLaMA3 via Hugging Face, Ollama, and LangChain.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="xp">
-        <div class="xp-meta">
-          <div class="xp-role">Django Backend Intern</div>
-          <div class="xp-org">DevNullX Technology Pvt. Ltd.</div>
-          <div class="xp-dates">Dec 2023 — Feb 2024 · Remote</div>
-        </div>
-        <div class="xp-body">
-          <h4>Salesman Expense &amp; Data Tracking System</h4>
-          <ul>
-            <li>Built a Django system tracking expenses via the MapMyIndia axial distance formula based on salesman-entered coordinates.</li>
-            <li>Visualized sales routes and locations on an interactive Folium map for route and expense optimization.</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
+    <div class="section-head"><span class="section-num">02</span><h2 class="section-title">Experience</h2></div>
+    <div class="section-body" id="v-experience"></div>
   </div>
 </section>
 
 <section id="work">
   <div class="wrap">
     <div class="rail"><span>§ 03</span></div>
-    <div class="section-head">
-      <span class="section-num">03</span>
-      <h2 class="section-title">Projects</h2>
-    </div>
-    <div class="section-body">
-
-      <div class="project">
-        <div class="project-year mono">Flagship</div>
-        <div class="project-main">
-          <h3>PolicySense — Policy Q&amp;A, grounded</h3>
-          <p>Applied deployment of the same sequential agentic retrieval mechanism developed in my EMNLP'26 research — grounding answers in official renewable energy policy documents rather than model memory, with full source attribution back to the source text. Live and testable — currently covers U.S. policy, with India coverage in progress.</p>
-          <div class="project-tags">
-            <span>RAG</span>
-            <span>Policy</span>
-            <span>Grounded QA</span>
-          </div>
-        </div>
-        <a href="https://policy-qa.vercel.app/" target="_blank" rel="noopener" class="project-link">live app →</a>
-      </div>
-
-      <div class="project-combined">
-        <div class="combined-header">
-          <h3 style="font-family:'Space Grotesk', sans-serif; font-size:20px; font-weight:600; color:var(--text-headline);">Rooftop-to-Energy Pipeline</h3>
-          <a href="https://roof-scan-live.vercel.app/" target="_blank" rel="noopener" class="project-link" style="color:var(--text-muted);">live app →</a>
-        </div>
-        <div class="combined-parts">
-
-          <div class="part">
-            <div class="part-tag mono">Part 1</div>
-            <div class="part-main">
-              <h4>Prompt-Conditioned Rooftop Delineation in Dense Urban Satellite Imagery</h4>
-              <p>Fine-tuned SAM to extract pixel-precise roof boundaries from satellite imagery given only a single point prompt — solving the instance-merging failure of classical segmentation in dense, wall-sharing urban scenes. Froze the ViT encoder, fine-tuned only the mask decoder and prompt encoder with a composite focal + dice loss. Fine-tuned SAM1 ViT-H reached <span style="color:var(--accent)">IoU 0.834</span> and <span style="color:var(--accent)">Boundary F-score 0.991</span> on a custom Indian rooftop dataset — roughly double zero-shot SAM's IoU. Difficulty-bin analysis found shape irregularity, not scale or density, as the dominant failure mode. Output is GIS-ready: Web Mercator tiling, morphological closing, and Douglas–Peucker simplification yield real-world polygon areas in m².</p>
-              <div class="part-tags">
-                <span>SAM</span>
-                <span>Instance Segmentation</span>
-                <span>Geospatial</span>
-                <span>DL / IT549</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="part">
-            <div class="part-tag mono">Part 2</div>
-            <div class="part-main">
-              <h4>Physics-Guided Latent Inference of PV System Losses</h4>
-              <p>Once a roof is delineated, estimate its solar potential. Fused four physics models — SAPM, CEC single-diode, SAM, PVWatts — with pvlib irradiance decomposition for a 40.29 kWp rooftop (HKUST, Hong Kong). Two encoder-decoder autoencoders learn a unified latent loss signal, validated against real plant generation data.</p>
-              <div class="part-tags">
-                <span>Physics-ML</span>
-                <span>Autoencoders</span>
-                <span>pvlib</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="project">
-        <div class="project-year mono">Independent</div>
-        <div class="project-main">
-          <h3>Isolated Subgraph Merger with Hybrid Translation &amp; Semantic Hyperplanes</h3>
-          <p>Built a topology-aware subgraph merging algorithm detecting isolated subgraphs via structural signals, combining TransH hyperplane translation with semantic similarity for geometry-aware entity alignment. Used t-SNE projections (384/768 → 2D/3D) to validate cluster coherence.</p>
-          <div class="project-tags">
-            <span>Knowledge Graphs</span>
-            <span>TransH</span>
-            <span>Embeddings</span>
-          </div>
-        </div>
-        <div class="project-link">—</div>
-      </div>
-
-      <div class="project">
-        <div class="project-year mono">2024</div>
-        <div class="project-main">
-          <h3>UpdateBuddy AI</h3>
-          <p>Multi-level AI agent that decides, generates, and formats daily work updates for 50+ daily users. Implements chain-of-thought reasoning via Groq's DeepSeek-R1-Distill-Qwen-32B, selecting Jira/Teams templates by tense and language.</p>
-          <div class="project-tags">
-            <span>Agents</span>
-            <span>Groq</span>
-            <span>Streamlit</span>
-          </div>
-        </div>
-        <a href="https://updatebuddy.streamlit.app" target="_blank" rel="noopener" class="project-link">live app →</a>
-      </div>
-
-      <div class="project">
-        <div class="project-year mono">2023</div>
-        <div class="project-main">
-          <h3>Movie Recommendation System</h3>
-          <p>Content-based recommendation engine using NLP feature extraction (genres, cast) with text vectorization and cosine similarity.</p>
-          <div class="project-tags">
-            <span>NLP</span>
-            <span>Vector Search</span>
-          </div>
-        </div>
-        <div class="project-link">view repo →</div>
-      </div>
-
-      <div class="project">
-        <div class="project-year mono">2023</div>
-        <div class="project-main">
-          <h3>Rainfall Prediction System</h3>
-          <p>Random Forest classifier with feature encoding, multicollinearity removal, and GridSearchCV hyperparameter optimization, evaluated via accuracy and confusion matrix.</p>
-          <div class="project-tags">
-            <span>Classical ML</span>
-            <span>scikit-learn</span>
-          </div>
-        </div>
-        <div class="project-link">view repo →</div>
-      </div>
-
-    </div>
+    <div class="section-head"><span class="section-num">03</span><h2 class="section-title">Projects</h2></div>
+    <div class="section-body" id="v-projects"></div>
   </div>
 </section>
 
 <section id="writing">
   <div class="wrap">
     <div class="rail"><span>§ 04</span></div>
-    <div class="section-head">
-      <span class="section-num">04</span>
-      <h2 class="section-title">Publications &amp; certifications</h2>
-    </div>
-    <div class="section-body">
-
-      <div class="pub">
-        <div>
-          <div class="pub-title">Sequential Uncertainty Resolution for Knowledge Graph Construction</div>
-          <div class="pub-venue mono">under review · EMNLP 2026</div>
-        </div>
-        <span class="pub-link">in review</span>
-      </div>
-
-      <div class="pub">
-        <div>
-          <div class="pub-title">Oracle Cloud Infrastructure 2024 Generative AI Certified Professional</div>
-          <div class="pub-venue mono">certification · Oracle · 2024</div>
-        </div>
-        <a href="#" class="pub-link">view →</a>
-      </div>
-
-    </div>
+    <div class="section-head"><span class="section-num">04</span><h2 class="section-title">Publications &amp; certifications</h2></div>
+    <div class="section-body" id="v-pubs"></div>
   </div>
 </section>
 
@@ -951,47 +379,688 @@
   <div class="wrap">
     <div class="rail"><span>§ 05</span></div>
     <div class="section-body" style="grid-column:1 / -1;">
-      <h2 class="contact-title">Building something interesting? Let's talk<span class="accent-dot">.</span></h2>
-      <p style="font-family:'JetBrains Mono', monospace; font-size:12.5px; color:var(--text-muted); margin-bottom:24px;">
+      <h2 class="contact-title" id="v-contact-title">Building something interesting? Let's talk<span class="accent-dot">.</span></h2>
+      <p class="mono" style="font-size:12.5px; color:var(--text-muted); margin-bottom:24px;" id="v-education">
         B.E. Computer Engineering, Government Engineering College, Gandhinagar — CGPA 8.30 · 2021–2025
       </p>
-      <div class="contact-links">
-        <a href="mailto:devanshvora03@gmail.com">Email</a>
-        <a href="https://github.com/Devanshvora03" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://linkedin.com/in/devanshvora03" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="tel:+919429734857">Phone</a>
-      </div>
+      <div class="contact-links" id="v-contact-links"></div>
     </div>
   </div>
 </section>
 
 <div class="wrap">
   <footer>
-    <span>© 2026 Devansh Vora</span>
-    <span>Built with care, no framework</span>
+    <span id="v-footer-left">© 2026 Devansh Vora</span>
+    <span id="v-footer-right">Built with care, no framework</span>
   </footer>
 </div>
 
+<!-- ===================== LOCK OVERLAY ===================== -->
+<div id="lockOverlay">
+  <div class="lock-box">
+    <h2>Enter password</h2>
+    <input type="password" id="lockInput" placeholder="Password" autocomplete="off">
+    <button class="btn btn-primary" id="lockSubmit" style="width:100%;">Unlock</button>
+    <div class="lock-err" id="lockErr"></div>
+    <div class="lock-close" id="lockCancel">cancel</div>
+  </div>
+</div>
+
+<!-- ===================== EDIT PANEL ===================== -->
+<div id="editPanel">
+  <div class="edit-header">
+    <h1>Edit portfolio</h1>
+    <div class="edit-actions">
+      <span class="save-status" id="saveStatus"></span>
+      <button class="btn" id="editCloseBtn">Close</button>
+      <button class="btn btn-primary" id="saveAllBtn">Save changes</button>
+    </div>
+  </div>
+
+  <div class="edit-body">
+
+    <!-- HEADER -->
+    <div class="edit-section">
+      <h2><span class="n">§ 00</span> Header</h2>
+      <div class="field">
+        <label>Name (use a line break for a new line)</label>
+        <input type="text" id="f-name" value="Devansh
+Vora">
+      </div>
+      <div class="grid-2">
+        <div class="field"><label>Role 1</label><input type="text" id="f-role1" value="AI Researcher"></div>
+        <div class="field"><label>Role 2</label><input type="text" id="f-role2" value="ML Engineer"></div>
+      </div>
+      <div class="field">
+        <label>Tagline (basic HTML like &lt;strong&gt; is fine)</label>
+        <textarea id="f-tagline">I research <strong>knowledge graph construction</strong> and <strong>retrieval-augmented reasoning</strong> for LLMs — currently building agentic pipelines that get small open-source models to outperform GPT-4o on structured extraction, under review at <strong>EMNLP'26</strong>.</textarea>
+      </div>
+      <div class="grid-2">
+        <div class="field"><label>Email</label><input type="text" id="f-email" value="devanshvora03@gmail.com"></div>
+        <div class="field"><label>Phone</label><input type="text" id="f-phone" value="+91 94297 34857"></div>
+        <div class="field"><label>GitHub URL</label><input type="text" id="f-github" value="https://github.com/Devanshvora03"></div>
+        <div class="field"><label>LinkedIn URL</label><input type="text" id="f-linkedin" value="https://linkedin.com/in/devanshvora03"></div>
+      </div>
+      <div class="grid-2">
+        <div class="field"><label>Status line</label><input type="text" id="f-status" value="Open to research collaborations"></div>
+        <div class="field"><label>Location line</label><input type="text" id="f-location" value="Ahmedabad, IN · UTC+5:30"></div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="edit-section">
+      <h2><span class="n">§ 01</span> About</h2>
+      <div class="field">
+        <label>About text (blank line = new paragraph)</label>
+        <textarea id="f-about" style="min-height:160px;">I'm a Computer Engineering graduate (Government Engineering College, Gandhinagar, CGPA 8.30) working as a Jr. AI Research Fellow at the Smart Energy Learning Center, Dhirubhai Ambani University. My research centers on knowledge graph construction and multi-hop retrieval — building agentic pipelines that make small, quantized open-source LLMs competitive with much larger closed models.
+
+Before this, I worked across three industry internships spanning computer vision (brand infringement detection with fine-tuned Vision Transformers), generative AI applications (RAG systems, transcript analysis with LLMs), and backend engineering (Django, geospatial systems). I care about rigorous evaluation, reproducible results, and systems that work under real resource constraints — not just on paper.</textarea>
+      </div>
+      <div class="field">
+        <label>Tech stack (comma-separated)</label>
+        <textarea id="f-stack">PyTorch, Python / Java, LangChain, LlamaIndex, CrewAI, Hugging Face, Neo4j, DSPy, AWS (SageMaker, Bedrock, S3), Docker / Runpod, FastAPI / Django REST, Streamlit</textarea>
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="edit-section">
+      <h2><span class="n">§ 02</span> Experience</h2>
+      <div class="repeat-list" id="xp-list"></div>
+      <button class="btn add-row" id="xp-add">+ Add experience</button>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="edit-section">
+      <h2><span class="n">§ 03</span> Projects</h2>
+      <div class="repeat-list" id="proj-list"></div>
+      <button class="btn add-row" id="proj-add">+ Add project</button>
+    </div>
+
+    <!-- PUBLICATIONS -->
+    <div class="edit-section">
+      <h2><span class="n">§ 04</span> Publications &amp; certifications</h2>
+      <div class="repeat-list" id="pub-list"></div>
+      <button class="btn add-row" id="pub-add">+ Add publication / certification</button>
+    </div>
+
+    <!-- CONTACT / FOOTER -->
+    <div class="edit-section">
+      <h2><span class="n">§ 05</span> Contact &amp; footer</h2>
+      <div class="field">
+        <label>Contact headline</label>
+        <input type="text" id="f-contact-title" value="Building something interesting? Let's talk">
+      </div>
+      <div class="field">
+        <label>Education line</label>
+        <input type="text" id="f-education" value="B.E. Computer Engineering, Government Engineering College, Gandhinagar — CGPA 8.30 · 2021–2025">
+      </div>
+      <div class="grid-2">
+        <div class="field"><label>Footer left</label><input type="text" id="f-footer-left" value="© 2026 Devansh Vora"></div>
+        <div class="field"><label>Footer right</label><input type="text" id="f-footer-right" value="Built with care, no framework"></div>
+      </div>
+    </div>
+
+    <div class="edit-section">
+      <h2 style="color:var(--danger);"><span class="n" style="color:var(--danger);">⚠</span> Reset</h2>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;">Clears all saved edits and reverts the page to the original defaults shown above.</p>
+      <button class="btn btn-danger" id="resetBtn">Reset all content to defaults</button>
+    </div>
+
+  </div>
+</div>
+
+<div id="savedToast">Saved</div>
+
 <script>
-  (function(){
-    const btn = document.getElementById('themeToggle');
-    const label = document.getElementById('themeLabel');
+/* ============================================================
+   CONFIG
+   ============================================================ */
+const EDIT_PASSWORD = "devansh2026"; // change this to whatever you like
+const STORAGE_KEY = "portfolio-data";
+const SESSION_FLAG = "portfolio-unlocked";
 
-    function updateLabel(){
-      const current = document.documentElement.getAttribute('data-theme');
-      label.textContent = current === 'light' ? 'Dark' : 'Light';
+/* ============================================================
+   DEFAULT DATA (mirrors the original hardcoded site)
+   ============================================================ */
+const DEFAULTS = {
+  name: "Devansh\nVora",
+  role1: "AI Researcher",
+  role2: "ML Engineer",
+  tagline: "I research <strong>knowledge graph construction</strong> and <strong>retrieval-augmented reasoning</strong> for LLMs — currently building agentic pipelines that get small open-source models to outperform GPT-4o on structured extraction, under review at <strong>EMNLP'26</strong>.",
+  email: "devanshvora03@gmail.com",
+  phone: "+91 94297 34857",
+  github: "https://github.com/Devanshvora03",
+  linkedin: "https://linkedin.com/in/devanshvora03",
+  status: "Open to research collaborations",
+  location: "Ahmedabad, IN · UTC+5:30",
+  about: `I'm a Computer Engineering graduate (Government Engineering College, Gandhinagar, CGPA 8.30) working as a Jr. AI Research Fellow at the Smart Energy Learning Center, Dhirubhai Ambani University. My research centers on knowledge graph construction and multi-hop retrieval — building agentic pipelines that make small, quantized open-source LLMs competitive with much larger closed models.
+
+Before this, I worked across three industry internships spanning computer vision (brand infringement detection with fine-tuned Vision Transformers), generative AI applications (RAG systems, transcript analysis with LLMs), and backend engineering (Django, geospatial systems). I care about rigorous evaluation, reproducible results, and systems that work under real resource constraints — not just on paper.`,
+  stack: "PyTorch, Python / Java, LangChain, LlamaIndex, CrewAI, Hugging Face, Neo4j, DSPy, AWS (SageMaker, Bedrock, S3), Docker / Runpod, FastAPI / Django REST, Streamlit",
+  contactTitle: "Building something interesting? Let's talk",
+  education: "B.E. Computer Engineering, Government Engineering College, Gandhinagar — CGPA 8.30 · 2021–2025",
+  footerLeft: "© 2026 Devansh Vora",
+  footerRight: "Built with care, no framework",
+  experience: [
+    {
+      role: "Jr. AI Research Fellow",
+      org: "Smart Energy Learning Center — Dhirubhai Ambani University",
+      dates: "May 2025 — Present · Ahmedabad",
+      body: `SUB: Sequential Uncertainty Resolution for Knowledge Graph Construction (Under review · EMNLP'26)
+- Architected SUR, a novel knowledge graph construction formulation separating fact grounding, relational organization, and graph representation into dependency-aware stages — implemented via SAGE-KG for robust schema-free KG construction with small open-source LLMs.
+- Designed a sequential agentic orchestration pipeline achieving 92.95% factual capture on MINE and 95% entity recovery on SemEval-2010 — outperforming GPT-4o-based baselines (KGGen: 66.07%) while running on Qwen2.5-14B at 4-bit quantization.
+- Evaluated across HotpotQA, MuSiQue, and 2WikiMultiHopQA; integrating SAGE-KG with HippoRAG2 achieved 64.4% Exact Match on 2WikiMultiHopQA and cut LLM call overhead by 73% over KGGen.
+- Applied deployment: PolicySense (https://policy-qa.vercel.app/) — a grounded policy Q&A tool built on this same retrieval mechanism.
+SUB: Adaptive Cross-Encoder Graph-Vector Retrieval for Multi-Hop Reasoning
+- Developed a cluster-aware graph retrieval framework using agglomerative clustering over entity embeddings, enabling dynamic seed expansion via centroid similarity and TF-IDF hybrid scoring for sparse multi-hop queries.
+- Engineered a directional graph retriever using seed-based PathTrie generation via BFS, paired with a reverse lookup index and a cross-encoder for high-precision multi-hop reasoning.`
+    },
+    {
+      role: "AI Research Intern",
+      org: "Communication Crafts Pvt. Ltd.",
+      dates: "Dec 2024 — May 2025 · Ahmedabad",
+      body: `SUB: Brand Infringement Detection System
+- Fine-tuned Vision Transformers and Swin Transformers with FP16 mixed precision to detect logo infringement, reframing continuous similarity as discrete classification.
+- Developed a custom Local Interval Loss function, improving accuracy 3× over traditional contrastive loss.
+- Implemented Flash Window Attention while preserving pretrained Swin Transformer weights; deployed as a serverless endpoint on RunPod with Docker and batch processing.`
+    },
+    {
+      role: "AI Engineer Intern",
+      org: "Cilans Systems Pvt. Ltd.",
+      dates: "Jun 2024 — Jul 2024 · Ahmedabad",
+      body: `SUB: Customer Agent Transcript Audit Report Generator
+- Built a GenAI application using Mistral-Large and GPT-4 to analyze agent-customer transcripts, automating reports on response quality, empathy, and problem-solving.
+- Used AWS Bedrock as the inference engine for Mistral-Large.
+SUB: Legal-GPT
+- Built a RAG application over Indian Penal Code sections using GPT-4, Mistral, Gemini, and LLaMA3 via Hugging Face, Ollama, and LangChain.`
+    },
+    {
+      role: "Django Backend Intern",
+      org: "DevNullX Technology Pvt. Ltd.",
+      dates: "Dec 2023 — Feb 2024 · Remote",
+      body: `SUB: Salesman Expense & Data Tracking System
+- Built a Django system tracking expenses via the MapMyIndia axial distance formula based on salesman-entered coordinates.
+- Visualized sales routes and locations on an interactive Folium map for route and expense optimization.`
     }
+  ],
+  projects: [
+    {
+      year: "Flagship",
+      title: "PolicySense — Policy Q&A, grounded",
+      desc: "Applied deployment of the same sequential agentic retrieval mechanism developed in my EMNLP'26 research — grounding answers in official renewable energy policy documents rather than model memory, with full source attribution back to the source text. Live and testable — currently covers U.S. policy, with India coverage in progress.",
+      tags: "RAG, Policy, Grounded QA",
+      linkLabel: "live app →",
+      linkUrl: "https://policy-qa.vercel.app/"
+    },
+    {
+      year: "Multi-part",
+      title: "Rooftop-to-Energy Pipeline",
+      desc: "Part 1 — Prompt-Conditioned Rooftop Delineation in Dense Urban Satellite Imagery: Fine-tuned SAM to extract pixel-precise roof boundaries from satellite imagery given only a single point prompt, solving the instance-merging failure of classical segmentation in dense, wall-sharing urban scenes. Fine-tuned SAM1 ViT-H reached IoU 0.834 and Boundary F-score 0.991 on a custom Indian rooftop dataset. Output is GIS-ready.\n\nPart 2 — Physics-Guided Latent Inference of PV System Losses: Fused four physics models (SAPM, CEC single-diode, SAM, PVWatts) with pvlib irradiance decomposition for a 40.29 kWp rooftop. Two encoder-decoder autoencoders learn a unified latent loss signal, validated against real plant generation data.",
+      tags: "SAM, Instance Segmentation, Geospatial, Physics-ML, Autoencoders, pvlib",
+      linkLabel: "live app →",
+      linkUrl: "https://roof-scan-live.vercel.app/"
+    },
+    {
+      year: "Independent",
+      title: "Isolated Subgraph Merger with Hybrid Translation & Semantic Hyperplanes",
+      desc: "Built a topology-aware subgraph merging algorithm detecting isolated subgraphs via structural signals, combining TransH hyperplane translation with semantic similarity for geometry-aware entity alignment. Used t-SNE projections (384/768 → 2D/3D) to validate cluster coherence.",
+      tags: "Knowledge Graphs, TransH, Embeddings",
+      linkLabel: "",
+      linkUrl: ""
+    },
+    {
+      year: "2024",
+      title: "UpdateBuddy AI",
+      desc: "Multi-level AI agent that decides, generates, and formats daily work updates for 50+ daily users. Implements chain-of-thought reasoning via Groq's DeepSeek-R1-Distill-Qwen-32B, selecting Jira/Teams templates by tense and language.",
+      tags: "Agents, Groq, Streamlit",
+      linkLabel: "live app →",
+      linkUrl: "https://updatebuddy.streamlit.app"
+    },
+    {
+      year: "2023",
+      title: "Movie Recommendation System",
+      desc: "Content-based recommendation engine using NLP feature extraction (genres, cast) with text vectorization and cosine similarity.",
+      tags: "NLP, Vector Search",
+      linkLabel: "view repo →",
+      linkUrl: ""
+    },
+    {
+      year: "2023",
+      title: "Rainfall Prediction System",
+      desc: "Random Forest classifier with feature encoding, multicollinearity removal, and GridSearchCV hyperparameter optimization, evaluated via accuracy and confusion matrix.",
+      tags: "Classical ML, scikit-learn",
+      linkLabel: "view repo →",
+      linkUrl: ""
+    }
+  ],
+  pubs: [
+    { title: "Sequential Uncertainty Resolution for Knowledge Graph Construction", venue: "under review · EMNLP 2026", linkLabel: "in review", linkUrl: "" },
+    { title: "Oracle Cloud Infrastructure 2024 Generative AI Certified Professional", venue: "certification · Oracle · 2024", linkLabel: "view →", linkUrl: "#" }
+  ]
+};
 
-    updateLabel();
+let DATA = null;
 
-    btn.addEventListener('click', function(){
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('portfolio-theme', next);
-      updateLabel();
-    });
-  })();
+/* ============================================================
+   STORAGE HELPERS
+   ============================================================ */
+async function loadData(){
+  try{
+    const res = await window.storage.get(STORAGE_KEY, false);
+    if(res && res.value){
+      const parsed = JSON.parse(res.value);
+      return Object.assign({}, DEFAULTS, parsed);
+    }
+  }catch(e){ /* no saved data yet */ }
+  return JSON.parse(JSON.stringify(DEFAULTS));
+}
+
+async function saveData(data){
+  await window.storage.set(STORAGE_KEY, JSON.stringify(data), false);
+}
+
+/* ============================================================
+   RENDER PUBLIC SITE
+   ============================================================ */
+function esc(str){
+  return String(str || "").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+function renderPublic(){
+  document.getElementById('v-name').innerHTML = esc(DATA.name).replace(/\n/g,'<br>') + '<span class="accent-dot">.</span>';
+  document.getElementById('v-roles').innerHTML =
+    `<span class="role">${esc(DATA.role1)}</span><span class="sep">/</span><span class="role">${esc(DATA.role2)}</span>`;
+  document.getElementById('v-tagline').innerHTML = DATA.tagline; // allow basic HTML like <strong>
+  document.getElementById('v-status').textContent = DATA.status;
+  document.getElementById('v-location').textContent = DATA.location;
+
+  const links = [];
+  if(DATA.email) links.push(`<a href="mailto:${esc(DATA.email)}">${esc(DATA.email)}</a>`);
+  if(DATA.github) links.push(`<a href="${esc(DATA.github)}" target="_blank" rel="noopener">${esc(DATA.github.replace(/^https?:\/\//,''))}</a>`);
+  if(DATA.linkedin) links.push(`<a href="${esc(DATA.linkedin)}" target="_blank" rel="noopener">${esc(DATA.linkedin.replace(/^https?:\/\//,''))}</a>`);
+  if(DATA.phone) links.push(`<a href="tel:${esc(DATA.phone.replace(/\s/g,''))}">${esc(DATA.phone)}</a>`);
+  document.getElementById('v-links').innerHTML = links.join('');
+
+  document.getElementById('v-about').innerHTML = esc(DATA.about).split(/\n\s*\n/).map(p=>`<p>${p.replace(/\n/g,'<br>')}</p>`).join('');
+  document.getElementById('v-stack').innerHTML = DATA.stack.split(',').map(s=>s.trim()).filter(Boolean)
+    .map(s=>`<span class="stack-item">${esc(s)}</span>`).join('');
+
+  // Experience
+  const xpHtml = DATA.experience.map(xp=>{
+    const bodyHtml = parseBodyBlocks(xp.body);
+    return `<div class="xp">
+      <div class="xp-meta">
+        <div class="xp-role">${esc(xp.role)}</div>
+        <div class="xp-org">${esc(xp.org)}</div>
+        <div class="xp-dates">${esc(xp.dates)}</div>
+      </div>
+      <div class="xp-body">${bodyHtml}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('v-experience').innerHTML = xpHtml || '<div class="empty-note">No experience entries yet.</div>';
+
+  // Projects
+  const projHtml = DATA.projects.map(p=>{
+    const linkHtml = p.linkUrl
+      ? `<a href="${esc(p.linkUrl)}" target="_blank" rel="noopener" class="project-link">${esc(p.linkLabel || 'view →')}</a>`
+      : `<div class="project-link">${esc(p.linkLabel || '—')}</div>`;
+    const tags = (p.tags||'').split(',').map(t=>t.trim()).filter(Boolean).map(t=>`<span>${esc(t)}</span>`).join('');
+    return `<div class="project">
+      <div class="project-year mono">${esc(p.year)}</div>
+      <div class="project-main">
+        <h3>${esc(p.title)}</h3>
+        <p style="white-space:pre-line;">${esc(p.desc)}</p>
+        <div class="project-tags">${tags}</div>
+      </div>
+      ${linkHtml}
+    </div>`;
+  }).join('');
+  document.getElementById('v-projects').innerHTML = projHtml || '<div class="empty-note">No projects yet.</div>';
+
+  // Publications
+  const pubHtml = DATA.pubs.map(p=>{
+    const linkHtml = p.linkUrl
+      ? `<a href="${esc(p.linkUrl)}" class="pub-link" target="_blank" rel="noopener">${esc(p.linkLabel||'view →')}</a>`
+      : `<span class="pub-link">${esc(p.linkLabel||'')}</span>`;
+    return `<div class="pub">
+      <div>
+        <div class="pub-title">${esc(p.title)}</div>
+        <div class="pub-venue mono">${esc(p.venue)}</div>
+      </div>
+      ${linkHtml}
+    </div>`;
+  }).join('');
+  document.getElementById('v-pubs').innerHTML = pubHtml || '<div class="empty-note">No publications yet.</div>';
+
+  document.getElementById('v-contact-title').innerHTML = esc(DATA.contactTitle) + '<span class="accent-dot">.</span>';
+  document.getElementById('v-education').textContent = DATA.education;
+
+  const clinks = [];
+  if(DATA.email) clinks.push(`<a href="mailto:${esc(DATA.email)}">Email</a>`);
+  if(DATA.github) clinks.push(`<a href="${esc(DATA.github)}" target="_blank" rel="noopener">GitHub</a>`);
+  if(DATA.linkedin) clinks.push(`<a href="${esc(DATA.linkedin)}" target="_blank" rel="noopener">LinkedIn</a>`);
+  if(DATA.phone) clinks.push(`<a href="tel:${esc(DATA.phone.replace(/\s/g,''))}">Phone</a>`);
+  document.getElementById('v-contact-links').innerHTML = clinks.join('');
+
+  document.getElementById('v-footer-left').textContent = DATA.footerLeft;
+  document.getElementById('v-footer-right').textContent = DATA.footerRight;
+}
+
+// Turns "SUB: heading" lines into <h4>, "- bullet" lines into <li> groups
+function parseBodyBlocks(text){
+  const lines = (text||'').split('\n');
+  let html = '';
+  let inList = false;
+  lines.forEach(line=>{
+    const t = line.trim();
+    if(!t){ return; }
+    if(t.startsWith('SUB:')){
+      if(inList){ html += '</ul>'; inList = false; }
+      html += `<h4>${esc(t.slice(4).trim())}</h4>`;
+    } else if(t.startsWith('- ')){
+      if(!inList){ html += '<ul>'; inList = true; }
+      html += `<li>${esc(t.slice(2).trim())}</li>`;
+    } else {
+      if(!inList){ html += '<ul>'; inList = true; }
+      html += `<li>${esc(t)}</li>`;
+    }
+  });
+  if(inList) html += '</ul>';
+  return html;
+}
+
+/* ============================================================
+   RENDER EDIT FORM (repeatable sections)
+   ============================================================ */
+function renderExperienceForm(){
+  const list = document.getElementById('xp-list');
+  list.innerHTML = '';
+  DATA.experience.forEach((xp, i)=>{
+    const block = document.createElement('div');
+    block.className = 'stack-block';
+    block.innerHTML = `
+      <div class="drag-handle">Entry ${i+1}
+        <button class="btn btn-sm btn-danger remove-btn" data-remove-xp="${i}">Remove</button>
+      </div>
+      <div class="grid-2">
+        <div class="field"><label>Role</label><input type="text" data-xp="${i}" data-field="role" value="${escAttr(xp.role)}"></div>
+        <div class="field"><label>Dates</label><input type="text" data-xp="${i}" data-field="dates" value="${escAttr(xp.dates)}"></div>
+      </div>
+      <div class="field"><label>Organization</label><input type="text" data-xp="${i}" data-field="org" value="${escAttr(xp.org)}"></div>
+      <div class="field">
+        <label>Details</label>
+        <textarea data-xp="${i}" data-field="body" style="min-height:140px;">${esc(xp.body)}</textarea>
+        <div class="hint">Line starting "SUB: text" = subheading. Line starting "- text" = bullet point.</div>
+      </div>
+    `;
+    list.appendChild(block);
+  });
+}
+
+function renderProjectsForm(){
+  const list = document.getElementById('proj-list');
+  list.innerHTML = '';
+  DATA.projects.forEach((p, i)=>{
+    const block = document.createElement('div');
+    block.className = 'stack-block';
+    block.innerHTML = `
+      <div class="drag-handle">Project ${i+1}
+        <button class="btn btn-sm btn-danger remove-btn" data-remove-proj="${i}">Remove</button>
+      </div>
+      <div class="grid-2">
+        <div class="field"><label>Year / tag</label><input type="text" data-proj="${i}" data-field="year" value="${escAttr(p.year)}"></div>
+        <div class="field"><label>Title</label><input type="text" data-proj="${i}" data-field="title" value="${escAttr(p.title)}"></div>
+      </div>
+      <div class="field"><label>Description</label><textarea data-proj="${i}" data-field="desc">${esc(p.desc)}</textarea></div>
+      <div class="field"><label>Tags (comma-separated)</label><input type="text" data-proj="${i}" data-field="tags" value="${escAttr(p.tags)}"></div>
+      <div class="grid-2">
+        <div class="field"><label>Link label</label><input type="text" data-proj="${i}" data-field="linkLabel" value="${escAttr(p.linkLabel)}"></div>
+        <div class="field"><label>Link URL (blank = no link)</label><input type="text" data-proj="${i}" data-field="linkUrl" value="${escAttr(p.linkUrl)}"></div>
+      </div>
+    `;
+    list.appendChild(block);
+  });
+}
+
+function renderPubsForm(){
+  const list = document.getElementById('pub-list');
+  list.innerHTML = '';
+  DATA.pubs.forEach((p, i)=>{
+    const block = document.createElement('div');
+    block.className = 'stack-block';
+    block.innerHTML = `
+      <div class="drag-handle">Entry ${i+1}
+        <button class="btn btn-sm btn-danger remove-btn" data-remove-pub="${i}">Remove</button>
+      </div>
+      <div class="field"><label>Title</label><input type="text" data-pub="${i}" data-field="title" value="${escAttr(p.title)}"></div>
+      <div class="grid-2">
+        <div class="field"><label>Venue</label><input type="text" data-pub="${i}" data-field="venue" value="${escAttr(p.venue)}"></div>
+        <div class="field"><label>Link label</label><input type="text" data-pub="${i}" data-field="linkLabel" value="${escAttr(p.linkLabel)}"></div>
+      </div>
+      <div class="field"><label>Link URL (blank = no link)</label><input type="text" data-pub="${i}" data-field="linkUrl" value="${escAttr(p.linkUrl)}"></div>
+    `;
+    list.appendChild(block);
+  });
+}
+
+function escAttr(str){ return esc(str).replace(/\n/g,'&#10;'); }
+
+function populateSimpleFields(){
+  document.getElementById('f-name').value = DATA.name;
+  document.getElementById('f-role1').value = DATA.role1;
+  document.getElementById('f-role2').value = DATA.role2;
+  document.getElementById('f-tagline').value = DATA.tagline;
+  document.getElementById('f-email').value = DATA.email;
+  document.getElementById('f-phone').value = DATA.phone;
+  document.getElementById('f-github').value = DATA.github;
+  document.getElementById('f-linkedin').value = DATA.linkedin;
+  document.getElementById('f-status').value = DATA.status;
+  document.getElementById('f-location').value = DATA.location;
+  document.getElementById('f-about').value = DATA.about;
+  document.getElementById('f-stack').value = DATA.stack;
+  document.getElementById('f-contact-title').value = DATA.contactTitle;
+  document.getElementById('f-education').value = DATA.education;
+  document.getElementById('f-footer-left').value = DATA.footerLeft;
+  document.getElementById('f-footer-right').value = DATA.footerRight;
+}
+
+function readSimpleFieldsIntoData(){
+  DATA.name = document.getElementById('f-name').value;
+  DATA.role1 = document.getElementById('f-role1').value;
+  DATA.role2 = document.getElementById('f-role2').value;
+  DATA.tagline = document.getElementById('f-tagline').value;
+  DATA.email = document.getElementById('f-email').value;
+  DATA.phone = document.getElementById('f-phone').value;
+  DATA.github = document.getElementById('f-github').value;
+  DATA.linkedin = document.getElementById('f-linkedin').value;
+  DATA.status = document.getElementById('f-status').value;
+  DATA.location = document.getElementById('f-location').value;
+  DATA.about = document.getElementById('f-about').value;
+  DATA.stack = document.getElementById('f-stack').value;
+  DATA.contactTitle = document.getElementById('f-contact-title').value;
+  DATA.education = document.getElementById('f-education').value;
+  DATA.footerLeft = document.getElementById('f-footer-left').value;
+  DATA.footerRight = document.getElementById('f-footer-right').value;
+}
+
+function readRepeatFieldsIntoData(){
+  document.querySelectorAll('[data-xp]').forEach(el=>{
+    const i = +el.getAttribute('data-xp');
+    const f = el.getAttribute('data-field');
+    if(DATA.experience[i]) DATA.experience[i][f] = el.value;
+  });
+  document.querySelectorAll('[data-proj]').forEach(el=>{
+    const i = +el.getAttribute('data-proj');
+    const f = el.getAttribute('data-field');
+    if(DATA.projects[i]) DATA.projects[i][f] = el.value;
+  });
+  document.querySelectorAll('[data-pub]').forEach(el=>{
+    const i = +el.getAttribute('data-pub');
+    const f = el.getAttribute('data-field');
+    if(DATA.pubs[i]) DATA.pubs[i][f] = el.value;
+  });
+}
+
+function renderEditForm(){
+  populateSimpleFields();
+  renderExperienceForm();
+  renderProjectsForm();
+  renderPubsForm();
+}
+
+/* ============================================================
+   EVENT WIRING
+   ============================================================ */
+function initEvents(){
+  // Theme toggle
+  const themeBtn = document.getElementById('themeToggle');
+  const themeLabel = document.getElementById('themeLabel');
+  function updateThemeLabel(){
+    const current = document.documentElement.getAttribute('data-theme');
+    themeLabel.textContent = current === 'light' ? 'Dark' : 'Light';
+  }
+  updateThemeLabel();
+  themeBtn.addEventListener('click', ()=>{
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('portfolio-theme', next);
+    updateThemeLabel();
+  });
+
+  // Lock / unlock
+  const lockOverlay = document.getElementById('lockOverlay');
+  const lockInput = document.getElementById('lockInput');
+  const lockErr = document.getElementById('lockErr');
+  const editPanel = document.getElementById('editPanel');
+
+  document.getElementById('editOpenBtn').addEventListener('click', ()=>{
+    if(sessionStorage.getItem(SESSION_FLAG) === '1'){
+      openEditPanel();
+    } else {
+      lockOverlay.classList.add('open');
+      lockInput.value = '';
+      lockErr.textContent = '';
+      setTimeout(()=>lockInput.focus(), 50);
+    }
+  });
+
+  document.getElementById('lockCancel').addEventListener('click', ()=>{
+    lockOverlay.classList.remove('open');
+  });
+
+  function tryUnlock(){
+    if(lockInput.value === EDIT_PASSWORD){
+      sessionStorage.setItem(SESSION_FLAG, '1');
+      lockOverlay.classList.remove('open');
+      openEditPanel();
+    } else {
+      lockErr.textContent = 'Incorrect password.';
+      lockInput.value = '';
+      lockInput.focus();
+    }
+  }
+  document.getElementById('lockSubmit').addEventListener('click', tryUnlock);
+  lockInput.addEventListener('keydown', e=>{ if(e.key === 'Enter') tryUnlock(); });
+
+  function openEditPanel(){
+    renderEditForm();
+    editPanel.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  document.getElementById('editCloseBtn').addEventListener('click', ()=>{
+    editPanel.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+
+  // Add / remove repeatable rows
+  document.getElementById('xp-add').addEventListener('click', ()=>{
+    readSimpleFieldsIntoData(); readRepeatFieldsIntoData();
+    DATA.experience.unshift({role:'New role', org:'Organization', dates:'Month Year — Present', body:'- Describe what you did.'});
+    renderExperienceForm();
+  });
+  document.getElementById('proj-add').addEventListener('click', ()=>{
+    readSimpleFieldsIntoData(); readRepeatFieldsIntoData();
+    DATA.projects.unshift({year:'2026', title:'New project', desc:'Describe the project.', tags:'', linkLabel:'', linkUrl:''});
+    renderProjectsForm();
+  });
+  document.getElementById('pub-add').addEventListener('click', ()=>{
+    readSimpleFieldsIntoData(); readRepeatFieldsIntoData();
+    DATA.pubs.unshift({title:'New publication', venue:'', linkLabel:'', linkUrl:''});
+    renderPubsForm();
+  });
+
+  document.getElementById('xp-list').addEventListener('click', e=>{
+    const idx = e.target.getAttribute('data-remove-xp');
+    if(idx !== null){
+      readSimpleFieldsIntoData(); readRepeatFieldsIntoData();
+      DATA.experience.splice(+idx, 1);
+      renderExperienceForm();
+    }
+  });
+  document.getElementById('proj-list').addEventListener('click', e=>{
+    const idx = e.target.getAttribute('data-remove-proj');
+    if(idx !== null){
+      readSimpleFieldsIntoData(); readRepeatFieldsIntoData();
+      DATA.projects.splice(+idx, 1);
+      renderProjectsForm();
+    }
+  });
+  document.getElementById('pub-list').addEventListener('click', e=>{
+    const idx = e.target.getAttribute('data-remove-pub');
+    if(idx !== null){
+      readSimpleFieldsIntoData(); readRepeatFieldsIntoData();
+      DATA.pubs.splice(+idx, 1);
+      renderPubsForm();
+    }
+  });
+
+  // Save
+  document.getElementById('saveAllBtn').addEventListener('click', async ()=>{
+    const status = document.getElementById('saveStatus');
+    status.textContent = 'Saving…';
+    status.classList.remove('ok');
+    try{
+      readSimpleFieldsIntoData();
+      readRepeatFieldsIntoData();
+      await saveData(DATA);
+      renderPublic();
+      status.textContent = 'Saved ✓';
+      status.classList.add('ok');
+      showToast('Changes saved');
+      setTimeout(()=>{ status.textContent=''; }, 2500);
+    }catch(err){
+      status.textContent = 'Save failed';
+      console.error(err);
+    }
+  });
+
+  // Reset
+  document.getElementById('resetBtn').addEventListener('click', async ()=>{
+    if(!confirm('This will erase all your saved edits and restore the original content. Continue?')) return;
+    DATA = JSON.parse(JSON.stringify(DEFAULTS));
+    try{ await saveData(DATA); }catch(e){}
+    renderEditForm();
+    renderPublic();
+    showToast('Reset to defaults');
+  });
+}
+
+function showToast(msg){
+  const t = document.getElementById('savedToast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2000);
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+(async function init(){
+  DATA = await loadData();
+  renderPublic();
+  initEvents();
+})();
 </script>
 </body>
 </html>

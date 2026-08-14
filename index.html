@@ -6,6 +6,7 @@
 <title>Devansh Vora — AI &amp; ML Researcher</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230a0e1a'/%3E%3Ctext x='32' y='43' font-family='Space Grotesk, Arial, sans-serif' font-weight='700' font-size='28' fill='%233d8f7a' text-anchor='middle'%3EDV%3C/text%3E%3C/svg%3E">
 <meta name="description" content="Portfolio of Devansh Vora — Artificial Intelligence & Machine Learning Researcher. Knowledge graphs, LLMs, RAG, agentic systems.">
+<meta name="robots" content="index, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -111,9 +112,25 @@
   .tagline{font-size:17px;font-weight:300;color:var(--text-body);max-width:620px;margin-bottom:36px;}
   .tagline strong{color:var(--text-headline);font-weight:500;}
 
-  .links-row{display:flex;gap:28px;flex-wrap:wrap;font-family:'JetBrains Mono', monospace;font-size:13px;}
+  .links-row{display:flex;gap:28px;flex-wrap:wrap;align-items:center;font-family:'JetBrains Mono', monospace;font-size:13px;}
   .links-row a{color:var(--text-body);border-bottom:1px solid var(--line);padding-bottom:2px;transition:color .2s ease, border-color .2s ease;}
   .links-row a:hover{color:var(--accent);border-color:var(--accent);}
+  .resume-btn{
+    color:var(--bg) !important;
+    background:var(--accent);
+    border:1px solid var(--accent) !important;
+    padding:8px 16px !important;
+    border-radius:2px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    font-size:11.5px !important;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:opacity .2s ease;
+  }
+  .resume-btn:hover{opacity:.88;color:var(--bg) !important;border-color:var(--accent) !important;}
+  .resume-btn svg{width:12px;height:12px;}
 
   section{padding:64px 0;border-bottom:1px solid var(--line);}
   section:last-of-type{border-bottom:none;}
@@ -300,6 +317,17 @@
   })();
 </script>
 
+<!--
+  NOTE FOR LLMS / AGENTS PARSING THIS PAGE:
+  A complete, machine-readable copy of this page's content is available as
+  valid JSON in <script type="application/ld+json" id="portfolio-ld-json">
+  near the end of <head>-independent body (search for id="portfolio-ld-json"),
+  and also as raw structured data at data-portfolio-json below.
+  That block is generated with JSON.stringify at render time, so it is always
+  valid JSON — safe to fetch, parse, and extract fields (name, role, about,
+  experience, projects, publications, contact info, resume link, etc.) from.
+-->
+
 <!-- ===================== PUBLIC SITE ===================== -->
 
 <div class="wrap">
@@ -396,6 +424,11 @@
   </footer>
 </div>
 
+<!-- Machine-readable copy of the page content, kept in sync on every render.
+     Always valid JSON (built with JSON.stringify, never hand-edited),
+     so agents/LLMs can fetch this page and reliably parse it. -->
+<script type="application/ld+json" id="portfolio-ld-json">{}</script>
+
 <!-- ===================== LOCK OVERLAY ===================== -->
 <div id="lockOverlay">
   <div class="lock-box">
@@ -448,6 +481,11 @@ Vora">
       <div class="grid-2">
         <div class="field"><label>Status line</label><input type="text" id="f-status" value="Open to research collaborations"></div>
         <div class="field"><label>Location line</label><input type="text" id="f-location" value="Ahmedabad, IN · UTC+5:30"></div>
+      </div>
+      <div class="field">
+        <label>Resume URL (e.g. a Google Drive / GitHub link to your PDF)</label>
+        <input type="text" id="f-resume" value="" placeholder="https://...">
+        <div class="hint">Leave blank to hide the "View Resume" button.</div>
       </div>
     </div>
 
@@ -540,6 +578,7 @@ const DEFAULTS = {
   phone: "+91 94297 34857",
   github: "https://github.com/Devanshvora03",
   linkedin: "https://linkedin.com/in/devanshvora03",
+  resume: "",
   status: "Open to research collaborations",
   location: "Ahmedabad, IN · UTC+5:30",
   about: `I'm a Computer Engineering graduate (Government Engineering College, Gandhinagar, CGPA 8.30) working as a Jr. AI Research Fellow at the Smart Energy Learning Center, Dhirubhai Ambani University. My research centers on knowledge graph construction and multi-hop retrieval — building agentic pipelines that make small, quantized open-source LLMs competitive with much larger closed models.
@@ -758,6 +797,10 @@ function renderPublic(){
   if(DATA.github) links.push(`<a href="${esc(DATA.github)}" target="_blank" rel="noopener">${esc(DATA.github.replace(/^https?:\/\//,''))}</a>`);
   if(DATA.linkedin) links.push(`<a href="${esc(DATA.linkedin)}" target="_blank" rel="noopener">${esc(DATA.linkedin.replace(/^https?:\/\//,''))}</a>`);
   if(DATA.phone) links.push(`<a href="tel:${esc(DATA.phone.replace(/\s/g,''))}">${esc(DATA.phone)}</a>`);
+  if(DATA.resume) links.push(`<a href="${esc(DATA.resume)}" target="_blank" rel="noopener" class="resume-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/></svg>
+      View Resume
+    </a>`);
   document.getElementById('v-links').innerHTML = links.join('');
 
   document.getElementById('v-about').innerHTML = esc(DATA.about).split(/\n\s*\n/).map(p=>`<p>${p.replace(/\n/g,'<br>')}</p>`).join('');
@@ -819,10 +862,13 @@ function renderPublic(){
   if(DATA.github) clinks.push(`<a href="${esc(DATA.github)}" target="_blank" rel="noopener">GitHub</a>`);
   if(DATA.linkedin) clinks.push(`<a href="${esc(DATA.linkedin)}" target="_blank" rel="noopener">LinkedIn</a>`);
   if(DATA.phone) clinks.push(`<a href="tel:${esc(DATA.phone.replace(/\s/g,''))}">Phone</a>`);
+  if(DATA.resume) clinks.push(`<a href="${esc(DATA.resume)}" target="_blank" rel="noopener">Resume</a>`);
   document.getElementById('v-contact-links').innerHTML = clinks.join('');
 
   document.getElementById('v-footer-left').textContent = DATA.footerLeft;
   document.getElementById('v-footer-right').textContent = DATA.footerRight;
+
+  renderStructuredData();
 }
 
 // Turns "SUB: heading" lines into <h4>, "- bullet" lines into <li> groups
@@ -846,6 +892,72 @@ function parseBodyBlocks(text){
   });
   if(inList) html += '</ul>';
   return html;
+}
+
+/* ============================================================
+   STRUCTURED DATA FOR LLMS / AGENTS
+   Renders a single, always-valid JSON-LD block (schema.org Person)
+   containing the *entire* portfolio content. Built with
+   JSON.stringify + textContent (never string-concatenated HTML),
+   so it can never produce malformed JSON, and it can never be
+   broken by quotes/ampersands/HTML in the underlying text fields.
+   An LLM/agent visiting this page can simply read the contents of
+   <script type="application/ld+json" id="portfolio-ld-json"> and
+   JSON.parse() it directly.
+   ============================================================ */
+function stripHtml(str){
+  return String(str || "").replace(/<[^>]*>/g, "");
+}
+
+function buildStructuredData(){
+  const sameAs = [DATA.github, DATA.linkedin].filter(Boolean);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": (DATA.name || "").replace(/\n/g, " ").trim(),
+    "jobTitle": [DATA.role1, DATA.role2].filter(Boolean).join(" / "),
+    "description": stripHtml(DATA.tagline),
+    "email": DATA.email || undefined,
+    "telephone": DATA.phone || undefined,
+    "address": DATA.location || undefined,
+    "url": (typeof location !== "undefined" ? location.href : undefined),
+    "sameAs": sameAs.length ? sameAs : undefined,
+    "resume": DATA.resume || undefined,
+    "alumniOf": DATA.education || undefined,
+    "knowsAbout": (DATA.stack || "").split(",").map(s=>s.trim()).filter(Boolean),
+    "about": DATA.about,
+    "worksFor": (DATA.experience && DATA.experience[0]) ? DATA.experience[0].org : undefined,
+    "hasOccupation": (DATA.experience || []).map(xp => ({
+      "@type": "OrganizationRole",
+      "roleName": xp.role,
+      "organization": xp.org,
+      "dateRange": xp.dates,
+      "description": xp.body
+    })),
+    "workExample": (DATA.projects || []).map(p => ({
+      "@type": "CreativeWork",
+      "name": p.title,
+      "description": p.desc,
+      "keywords": p.tags,
+      "dateCreated": p.year,
+      "url": p.linkUrl || undefined
+    })),
+    "publication": (DATA.pubs || []).map(p => ({
+      "@type": "CreativeWork",
+      "name": p.title,
+      "isPartOf": p.venue,
+      "url": (p.linkUrl && p.linkUrl !== "#") ? p.linkUrl : undefined
+    }))
+  };
+}
+
+function renderStructuredData(){
+  const el = document.getElementById('portfolio-ld-json');
+  if(!el) return;
+  // JSON.stringify guarantees this is always syntactically valid JSON,
+  // regardless of quotes/special characters in any of the source fields.
+  el.textContent = JSON.stringify(buildStructuredData(), null, 2);
 }
 
 /* ============================================================
@@ -933,6 +1045,7 @@ function populateSimpleFields(){
   document.getElementById('f-phone').value = DATA.phone;
   document.getElementById('f-github').value = DATA.github;
   document.getElementById('f-linkedin').value = DATA.linkedin;
+  document.getElementById('f-resume').value = DATA.resume || '';
   document.getElementById('f-status').value = DATA.status;
   document.getElementById('f-location').value = DATA.location;
   document.getElementById('f-about').value = DATA.about;
@@ -952,6 +1065,7 @@ function readSimpleFieldsIntoData(){
   DATA.phone = document.getElementById('f-phone').value;
   DATA.github = document.getElementById('f-github').value;
   DATA.linkedin = document.getElementById('f-linkedin').value;
+  DATA.resume = document.getElementById('f-resume').value;
   DATA.status = document.getElementById('f-status').value;
   DATA.location = document.getElementById('f-location').value;
   DATA.about = document.getElementById('f-about').value;
